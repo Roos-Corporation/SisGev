@@ -18,10 +18,10 @@ class UpdatePersonDTO
     )
     {}
 
-    public static function makeFromRequest(StoreUpdatePerson $request): self
+    public static function makeFromRequest(StoreUpdatePerson $request, string $id): self
     {
         return new self(
-            $request->id,
+            $id,
             $request->cpf,
             $request->first_name,
             $request->last_name,

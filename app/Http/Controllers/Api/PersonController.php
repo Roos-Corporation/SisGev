@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Api;
 
 use App\DTO\CreatePersonDTO;
+use App\DTO\UpdatePersonDTO;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreUpdatePerson;
 use App\Http\Resources\PersonResource;
@@ -62,9 +63,24 @@ class PersonController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(StoreUpdatePerson $request, string $id)
     {
-        //
+
+
+        //Let's using the service to update the person from the request validating first by the StoreUpdatePerson
+        $person = $this->service->update(
+            UpdatePersonDTO::makeFromRequest($request, $id)
+        );
+
+        //Let's check if exist the person
+        if ( !$person ){
+            return response()->json([
+                'Not Found'
+            ], Response::HTTP_NOT_FOUND);
+        }
+
+        //Return the object
+        return new PersonResource($person);
     }
 
     /**
