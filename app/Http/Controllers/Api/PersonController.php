@@ -8,6 +8,7 @@ use App\Http\Requests\StoreUpdatePerson;
 use App\Http\Resources\PersonResource;
 use App\Services\PersonService;
 use Illuminate\Http\Request;
+use Illuminate\Http\Response;
 
 class PersonController extends Controller
 {
@@ -33,11 +34,12 @@ class PersonController extends Controller
      */
     public function store(StoreUpdatePerson $request)
     {
-        //Let using the service to save the person from the request validating first by the StoreUpdatePerson
+        //Let's using the service to save the person from the request validating first by the StoreUpdatePerson
         $person = $this->service->create(
             CreatePersonDTO::makeFromRequest($request)
         );
 
+        //Return the object
         return new PersonResource($person);
     }
 
@@ -46,7 +48,15 @@ class PersonController extends Controller
      */
     public function show(string $id)
     {
-        //
+        //Let's check if exist and get the person by the id
+        if ( !$person = $this->service->findOne($id) ){
+            return response()->json([
+                'Not Found'
+            ], Response::HTTP_NOT_FOUND);
+        }
+
+        //If exist return the object found
+        return new PersonResource($person);
     }
 
     /**

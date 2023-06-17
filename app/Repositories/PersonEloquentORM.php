@@ -33,10 +33,11 @@ class PersonEloquentORM implements PersonRepositoryInterface{
     public function findOne(string $id): stdClass|null
     {
 
-       $person = (object) $this->model->find($id);
-       if ( !$person ) {
-        return null;
-       }
+        $person = $this->model->find($id);
+
+        if (!$person) {
+            return null;
+        }
        return  (object) $person->toArray();
     }
 
