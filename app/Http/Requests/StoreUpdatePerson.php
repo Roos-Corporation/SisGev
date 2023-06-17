@@ -53,6 +53,9 @@ class StoreUpdatePerson extends FormRequest
             'gender' => [
                 'required'
             ],
+            'status' => [
+                'required'
+            ],
 
         ];
 
