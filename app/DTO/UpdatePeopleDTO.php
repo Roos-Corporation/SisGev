@@ -2,9 +2,9 @@
 
 namespace App\DTO;
 
-use App\Http\Requests\StoreUpdatePeople;
+use App\Http\Requests\StoreUpdatePerson;
 
-class UpdatePeopleDTO
+class UpdatePersonDTO
 {
     public function __construct(
         public string $id,
@@ -18,7 +18,7 @@ class UpdatePeopleDTO
     )
     {}
 
-    public static function makeFromRequest(StoreUpdatePeople $request): self
+    public static function makeFromRequest(StoreUpdatePerson $request): self
     {
         return new self(
             $request->id,

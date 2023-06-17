@@ -2,9 +2,9 @@
 
 namespace App\DTO;
 
-use App\Http\Requests\StoreUpdatePeople;
+use App\Http\Requests\StoreUpdatePerson;
 
-class CreatePeopleDTO
+class CreatePersonDTO
 {
     public function __construct(
         public string $cpf,
@@ -17,7 +17,7 @@ class CreatePeopleDTO
     )
     {}
 
-    public static function makeFromRequest(StoreUpdatePeople $request): self
+    public static function makeFromRequest(StoreUpdatePerson $request): self
     {
         return new self(
             $request->cpf,
