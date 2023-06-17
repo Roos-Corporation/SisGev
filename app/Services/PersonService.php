@@ -2,16 +2,16 @@
 
 namespace App\Services;
 
-use App\DTO\{ CreatePeopleDTO, UpdatePeopleDTO };
-use App\Repositories\PeopleRepositoryInterface;
+use App\DTO\{ CreatePersonDTO, UpdatePersonDTO };
+use App\Repositories\PersonRepositoryInterface;
 use stdClass;
 
-class PeopleService
+class PersonService
 {
 
 
     public function __construct(
-        protected PeopleRepositoryInterface $repository
+        protected PersonRepositoryInterface $repository
     ){}
 
     public function getAll(string $filter = null): array
@@ -24,12 +24,12 @@ class PeopleService
         return $this->repository->findOne($id);
     }
 
-    public function create(CreatePeopleDTO $dto): stdClass
+    public function create(CreatePersonDTO $dto): stdClass
     {
         return $this->repository-> create($dto);
     }
 
-    public function update(UpdatePeopleDTO $dto): stdClass|null
+    public function update(UpdatePersonDTO $dto): stdClass|null
     {
         return $this->repository->update($dto);
     }
