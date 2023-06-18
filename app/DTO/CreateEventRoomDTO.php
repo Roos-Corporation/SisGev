@@ -8,7 +8,7 @@ class CreateEventRoomDTO
 {
     public function __construct(
         public string $name,
-        public string $capacity,
+        public int $capacity,
         public string $location,
         public string $status
     )

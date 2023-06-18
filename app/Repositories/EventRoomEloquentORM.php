@@ -5,7 +5,6 @@ namespace App\Repositories;
 use App\DTO\CreateEventRoomDTO;
 use App\DTO\UpdateEventRoomDTO;
 use App\Models\EventRoom;
-use App\Repositories\EventRoomRepositoryInterface;
 use stdClass;
 
 class EventRoomEloquentORM implements EventRoomRepositoryInterface{

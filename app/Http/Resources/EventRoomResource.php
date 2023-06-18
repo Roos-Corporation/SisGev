@@ -6,7 +6,7 @@ use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\JsonResource;
 
-class PersonResource extends JsonResource
+class EventRoomResource extends JsonResource
 {
     /**
      * Transform the resource into an array.
@@ -18,24 +18,18 @@ class PersonResource extends JsonResource
         if(!isset($this->id)){
             return [
                 'id' => $this['id'],
-                'cpf' => $this['cpf'],
-                'firstName' => $this['first_name'],
-                'lastName' => $this['last_name'],
-                'accounting' => $this['accounting'],
-                'dateOfBirth' => $this['date_of_birth'],
-                'gender' => $this['gender'],
+                'name' => $this['name'],
+                'capacity' => $this['capacity'],
+                'location' => $this['location'],
                 'status' => $this['status'],
                 'date_created' => Carbon::make($this['created_at'])->format('Y-m-d H:i:s')
             ];
         }
         return [
             'id' => $this->id,
-            'cpf' => $this->cpf,
-            'firstName' => $this->first_name,
-            'lastName' => $this->last_name,
-            'accounting' => $this->accounting,
-            'dateOfBirth' => $this->date_of_birth,
-            'gender' => $this->gender,
+            'name' => $this->name,
+            'capacity' => $this->capacity,
+            'location' => $this->location,
             'status' => $this->status,
             'date_created' => Carbon::make($this->created_at)->format('Y-m-d H:i:s')
         ];

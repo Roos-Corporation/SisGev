@@ -34,14 +34,6 @@ class StoreUpdateEventRoom extends FormRequest
                 'required',
                 'min:1'
             ],
-            'location' => [
-                'required',
-                'min:1',
-                'max:255'
-            ],
-            'gender' => [
-                'required'
-            ],
             'status' => [
                 'required'
             ],
