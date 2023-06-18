@@ -2,6 +2,8 @@
 
 namespace App\Providers;
 
+use App\Repositories\EventParticipantEloquentORM;
+use App\Repositories\EventParticipantRepositoryInterface;
 use App\Repositories\EventEloquentORM;
 use App\Repositories\EventRepositoryInterface;
 use App\Repositories\CoffeeSpaceEloquentORM;
@@ -41,6 +43,12 @@ class AppServiceProvider extends ServiceProvider
         $this->app->bind(
             EventRepositoryInterface::class,
             EventEloquentORM::class
+        );
+
+        //EventParticipant
+        $this->app->bind(
+            EventParticipantRepositoryInterface::class,
+            EventParticipantEloquentORM::class
         );
     }
 
