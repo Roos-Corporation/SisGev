@@ -30,6 +30,6 @@ Route::apiResource('/event-rooms', EventRoomController::class);
 Route::apiResource('/coffee-spaces', CoffeeSpaceController::class);
 Route::apiResource('/events', EventController::class);
 Route::apiResource('/event-participants', EventParticipantController::class);
-Route::apiResource('/event-stages-participants', EventStageParticipantController::class);
+Route::apiResource('/event-stage-participants', EventStageParticipantController::class);
 
 
