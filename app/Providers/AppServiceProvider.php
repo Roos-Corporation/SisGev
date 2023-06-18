@@ -2,6 +2,9 @@
 
 namespace App\Providers;
 
+
+use App\Repositories\EventStageParticipantEloquentORM;
+use App\Repositories\EventStageParticipantRepositoryInterface;
 use App\Repositories\EventParticipantEloquentORM;
 use App\Repositories\EventParticipantRepositoryInterface;
 use App\Repositories\EventEloquentORM;
@@ -49,6 +52,12 @@ class AppServiceProvider extends ServiceProvider
         $this->app->bind(
             EventParticipantRepositoryInterface::class,
             EventParticipantEloquentORM::class
+        );
+
+        //EventStageParticipant
+        $this->app->bind(
+            EventStageParticipantRepositoryInterface::class,
+            EventStageParticipantEloquentORM::class
         );
     }
 
