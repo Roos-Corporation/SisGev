@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Api\EventStageParticipantController;
 use App\Http\Controllers\Api\EventParticipantController;
 use App\Http\Controllers\Api\EventController;
 use App\Http\Controllers\Api\CoffeeSpaceController;
@@ -29,5 +30,6 @@ Route::apiResource('/event-rooms', EventRoomController::class);
 Route::apiResource('/coffee-spaces', CoffeeSpaceController::class);
 Route::apiResource('/events', EventController::class);
 Route::apiResource('/event-participants', EventParticipantController::class);
+Route::apiResource('/event-stages-participants', EventStageParticipantController::class);
 
 
