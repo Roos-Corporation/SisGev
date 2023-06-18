@@ -70,6 +70,17 @@ class EventRoomController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+         //Let's check if exist and get the eventRoom by the id
+         if ( !$this->service->findOne($id) ){
+            return response()->json([
+                'Not Found'
+            ], Response::HTTP_NOT_FOUND);
+        }
+
+        //Let's delete the eventRoom by the id
+        $this->service->delete($id);
+
+        //Return the object found 204
+        return response()->json([], Response::HTTP_NO_CONTENT);
     }
 }
