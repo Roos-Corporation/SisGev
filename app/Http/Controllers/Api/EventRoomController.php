@@ -8,6 +8,7 @@ use App\Http\Requests\StoreUpdateEventRoom;
 use App\Http\Resources\EventRoomResource;
 use App\Services\EventRoomService;
 use Illuminate\Http\Request;
+use Illuminate\Http\Response;
 
 class EventRoomController extends Controller
 {
@@ -45,7 +46,15 @@ class EventRoomController extends Controller
      */
     public function show(string $id)
     {
-        //
+        //Let's check if exist and get the eventRoom by the id
+        if ( !$eventRoom = $this->service->findOne($id) ){
+            return response()->json([
+                'Not Found'
+            ], Response::HTTP_NOT_FOUND);
+        }
+
+        //If exist return the object found
+        return new EventRoomResource($eventRoom);
     }
 
     /**
