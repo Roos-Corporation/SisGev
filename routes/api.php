@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Api\CoffeeSpaceController;
 use App\Http\Controllers\Api\EventRoomController;
 use App\Http\Controllers\Api\PersonController;
 use Illuminate\Http\Request;
@@ -23,3 +24,5 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 
 Route::apiResource('/people', PersonController::class);
 Route::apiResource('/event-rooms', EventRoomController::class);
+Route::apiResource('/coffee-spaces', CoffeeSpaceController::class);
+
