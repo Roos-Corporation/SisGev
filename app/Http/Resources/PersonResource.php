@@ -15,6 +15,19 @@ class PersonResource extends JsonResource
      */
     public function toArray(Request $request): array
     {
+        if(!isset($this->id)){
+            return [
+                'id' => $this['id'],
+                'cpf' => $this['cpf'],
+                'firstName' => $this['first_name'],
+                'lastName' => $this['last_name'],
+                'accounting' => $this['last_name'],
+                'dateOfBirth' => $this['date_of_birth'],
+                'gender' => $this['gender'],
+                'status' => $this['status'],
+                'date_created' => Carbon::make($this['created_at'])->format('Y-m-d H:i:s')
+            ];
+        }
         return [
             'id' => $this->id,
             'cpf' => $this->cpf,

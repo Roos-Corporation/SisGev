@@ -25,9 +25,13 @@ class PersonController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
-        //
+        //Let's get all people
+        $people = $this->service->getAll($request->filter);
+
+        //Return the object
+        return PersonResource::collection($people);
     }
 
     /**
@@ -68,8 +72,9 @@ class PersonController extends Controller
 
 
         //Let's using the service to update the person from the request validating first by the StoreUpdatePerson
+        $request['id']= $id;
         $person = $this->service->update(
-            UpdatePersonDTO::makeFromRequest($request, $id)
+            UpdatePersonDTO::makeFromRequest($request,$id)
         );
 
         //Let's check if exist the person

@@ -58,14 +58,12 @@ class StoreUpdatePerson extends FormRequest
             ],
 
         ];
-
-        if ( $this->method() === 'PUT') {
-
+        if ( $this->method() === 'PUT' ||  $this->method() === 'PATCH') {
             $rules['cpf'] = [
                 'required',
                 'min:11',
                 'max:14',
-                Rule::unique('people')->ignore($this->id)
+                Rule::unique('people')->ignore($this->person)
             ];
         }
 
