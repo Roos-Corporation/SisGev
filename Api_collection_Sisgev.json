@@ -1,0 +1,1006 @@
+{
+    "info": {
+        "_postman_id": "63cdac5e-563d-4a32-a405-2be7ecc0ae02",
+        "name": "Sisgev",
+        "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+        "description": ""
+    },
+    "item": [
+        {
+            "name": "People",
+            "item": [
+                {
+                    "name": "PersonCreate",
+                    "request": {
+                        "method": "POST",
+                        "url": {
+                            "raw": "http://localhost:8989/api/people",
+                            "path": [
+                                "api",
+                                "people"
+                            ],
+                            "protocol": "http",
+                            "host": [
+                                "localhost"
+                            ],
+                            "port": "8989"
+                        },
+                        "header": [
+                            {
+                                "key": "Accept",
+                                "value": "application/json"
+                            },
+                            {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "options": {
+                                "raw": {
+                                    "language": "json"
+                                }
+                            },
+                            "raw": "{\n  \"cpf\": \"684.682.391-35\",\n  \"first_name\": \"Elza Pietra \",\n  \"last_name\": \"Nina Moreira\",\n  \"accounting\": \"Apoio Contabilidade\",\n  \"date_of_birth\": \"1991-08-01\",\n  \"gender\": \"f\",\n  \"status\": \"i\"\n}"
+                        }
+                    }
+                },
+                {
+                    "name": "PersonUpdate",
+                    "request": {
+                        "method": "PUT",
+                        "url": {
+                            "raw": "http://localhost:8989/api/people/4",
+                            "path": [
+                                "api",
+                                "people",
+                                "4"
+                            ],
+                            "protocol": "http",
+                            "host": [
+                                "localhost"
+                            ],
+                            "port": "8989"
+                        },
+                        "header": [
+                            {
+                                "key": "Accept",
+                                "value": "application/json"
+                            },
+                            {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "options": {
+                                "raw": {
+                                    "language": "json"
+                                }
+                            },
+                            "raw": "{\n  \"cpf\": \"684.682.391-31\",\n  \"first_name\": \"Elza Pietra \",\n  \"last_name\": \"Moreira\",\n  \"accounting\": \"Apoio Contabilidade\",\n  \"date_of_birth\": \"1991-08-01\",\n  \"gender\": \"f\",\n  \"status\": \"i\"\n}"
+                        }
+                    }
+                },
+                {
+                    "name": "PersonShow",
+                    "request": {
+                        "method": "GET",
+                        "url": {
+                            "raw": "http://localhost:8989/api/people/4",
+                            "path": [
+                                "api",
+                                "people",
+                                "4"
+                            ],
+                            "protocol": "http",
+                            "host": [
+                                "localhost"
+                            ],
+                            "port": "8989"
+                        },
+                        "header": [
+                            {
+                                "key": "Accept",
+                                "value": "application/json"
+                            },
+                            {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                            }
+                        ]
+                    }
+                },
+                {
+                    "name": "PersonShowAll",
+                    "request": {
+                        "method": "GET",
+                        "url": {
+                            "raw": "http://localhost:8989/api/people",
+                            "path": [
+                                "api",
+                                "people"
+                            ],
+                            "protocol": "http",
+                            "host": [
+                                "localhost"
+                            ],
+                            "port": "8989"
+                        },
+                        "header": [
+                            {
+                                "key": "Accept",
+                                "value": "application/json"
+                            },
+                            {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                            }
+                        ]
+                    }
+                },
+                {
+                    "name": "PersonDelete",
+                    "request": {
+                        "method": "DELETE",
+                        "url": {
+                            "raw": "http://localhost:8989/api/people/1",
+                            "path": [
+                                "api",
+                                "people",
+                                "1"
+                            ],
+                            "protocol": "http",
+                            "host": [
+                                "localhost"
+                            ],
+                            "port": "8989"
+                        },
+                        "header": [
+                            {
+                                "key": "Accept",
+                                "value": "application/json"
+                            },
+                            {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                            }
+                        ]
+                    }
+                }
+            ]
+        },
+        {
+            "name": "EventRooms",
+            "item": [
+                {
+                    "name": "EventRoomUpdate",
+                    "request": {
+                        "method": "PUT",
+                        "url": {
+                            "raw": "http://localhost:8989/api/event/4",
+                            "path": [
+                                "api",
+                                "event",
+                                "4"
+                            ],
+                            "protocol": "http",
+                            "host": [
+                                "localhost"
+                            ],
+                            "port": "8989"
+                        },
+                        "header": [
+                            {
+                                "key": "Accept",
+                                "value": "application/json"
+                            },
+                            {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "options": {
+                                "raw": {
+                                    "language": "json"
+                                }
+                            },
+                            "raw": "{\n  \"name\": \"Sala A4\",\n  \"capacity\": 30,\n  \"location\": \"3ra andar\",\n  \"status\": \"r\"\n}"
+                        }
+                    }
+                },
+                {
+                    "name": "EventRoomDelete",
+                    "request": {
+                        "method": "DELETE",
+                        "url": {
+                            "raw": "http://localhost:8989/api/event-rooms/3",
+                            "path": [
+                                "api",
+                                "event-rooms",
+                                "3"
+                            ],
+                            "protocol": "http",
+                            "host": [
+                                "localhost"
+                            ],
+                            "port": "8989"
+                        },
+                        "header": [
+                            {
+                                "key": "Accept",
+                                "value": "application/json"
+                            },
+                            {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                            }
+                        ]
+                    }
+                },
+                {
+                    "name": "EventRoomCreate",
+                    "request": {
+                        "method": "POST",
+                        "url": {
+                            "raw": "http://localhost:8989/api/event-rooms",
+                            "path": [
+                                "api",
+                                "event-rooms"
+                            ],
+                            "protocol": "http",
+                            "host": [
+                                "localhost"
+                            ],
+                            "port": "8989"
+                        },
+                        "header": [
+                            {
+                                "key": "Accept",
+                                "value": "application/json"
+                            },
+                            {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "options": {
+                                "raw": {
+                                    "language": "json"
+                                }
+                            },
+                            "raw": "{\n  \"name\": \"Sala A4\",\n  \"capacity\": 30,\n  \"location\": \"1ro andar\",\n  \"status\": \"r\"\n}"
+                        }
+                    }
+                },
+                {
+                    "name": "EventRoomShow",
+                    "request": {
+                        "method": "GET",
+                        "url": {
+                            "raw": "http://localhost:8989/api/event-rooms/4",
+                            "path": [
+                                "api",
+                                "event-rooms",
+                                "4"
+                            ],
+                            "protocol": "http",
+                            "host": [
+                                "localhost"
+                            ],
+                            "port": "8989"
+                        },
+                        "header": [
+                            {
+                                "key": "Accept",
+                                "value": "application/json"
+                            },
+                            {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                            }
+                        ]
+                    }
+                },
+                {
+                    "name": "EventRoomShowAll",
+                    "request": {
+                        "method": "GET",
+                        "url": {
+                            "raw": "http://localhost:8989/api/event-rooms",
+                            "path": [
+                                "api",
+                                "event-rooms"
+                            ],
+                            "protocol": "http",
+                            "host": [
+                                "localhost"
+                            ],
+                            "port": "8989"
+                        },
+                        "header": [
+                            {
+                                "key": "Accept",
+                                "value": "application/json"
+                            },
+                            {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                            }
+                        ]
+                    }
+                }
+            ]
+        },
+        {
+            "name": "Events",
+            "item": [
+                {
+                    "name": "EventUpdate",
+                    "request": {
+                        "method": "PUT",
+                        "url": {
+                            "raw": "http://localhost:8989/api/events/3",
+                            "path": [
+                                "api",
+                                "events",
+                                "3"
+                            ],
+                            "protocol": "http",
+                            "host": [
+                                "localhost"
+                            ],
+                            "port": "8989"
+                        },
+                        "header": [
+                            {
+                                "key": "Accept",
+                                "value": "application/json"
+                            },
+                            {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "options": {
+                                "raw": {
+                                    "language": "json"
+                                }
+                            },
+                            "raw": "{\n  \"name\": \"Colacao de grau RC\",\n  \"responsible\": \"Delta admira\",\n  \"stages\": 2,\n  \"capacity\": 2000,\n  \"location\": \"Indaia eventos\",\n  \"status\": \"a\"\n}"
+                        }
+                    }
+                },
+                {
+                    "name": "EventDelete",
+                    "request": {
+                        "method": "DELETE",
+                        "url": {
+                            "raw": "http://localhost:8989/api/events/4",
+                            "path": [
+                                "api",
+                                "events",
+                                "4"
+                            ],
+                            "protocol": "http",
+                            "host": [
+                                "localhost"
+                            ],
+                            "port": "8989"
+                        },
+                        "header": [
+                            {
+                                "key": "Accept",
+                                "value": "application/json"
+                            },
+                            {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                            }
+                        ]
+                    }
+                },
+                {
+                    "name": "EventCreate",
+                    "request": {
+                        "method": "POST",
+                        "url": {
+                            "raw": "http://localhost:8989/api/events",
+                            "path": [
+                                "api",
+                                "events"
+                            ],
+                            "protocol": "http",
+                            "host": [
+                                "localhost"
+                            ],
+                            "port": "8989"
+                        },
+                        "header": [
+                            {
+                                "key": "Accept",
+                                "value": "application/json"
+                            },
+                            {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "options": {
+                                "raw": {
+                                    "language": "json"
+                                }
+                            },
+                            "raw": "{\n  \"name\": \"Colacao de grau\",\n  \"responsible\": \"Ana ritza\",\n  \"stages\": 2,\n  \"capacity\": 2000,\n  \"location\": \"Indaia eventos\",\n  \"status\": \"a\"\n}"
+                        }
+                    }
+                },
+                {
+                    "name": "EventShow",
+                    "request": {
+                        "method": "GET",
+                        "url": {
+                            "raw": "http://localhost:8989/api/events/4",
+                            "path": [
+                                "api",
+                                "events",
+                                "4"
+                            ],
+                            "protocol": "http",
+                            "host": [
+                                "localhost"
+                            ],
+                            "port": "8989"
+                        },
+                        "header": [
+                            {
+                                "key": "Accept",
+                                "value": "application/json"
+                            },
+                            {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                            }
+                        ]
+                    }
+                },
+                {
+                    "name": "EventShowAll",
+                    "request": {
+                        "method": "GET",
+                        "url": {
+                            "raw": "http://localhost:8989/api/events",
+                            "path": [
+                                "api",
+                                "events"
+                            ],
+                            "protocol": "http",
+                            "host": [
+                                "localhost"
+                            ],
+                            "port": "8989"
+                        },
+                        "header": [
+                            {
+                                "key": "Accept",
+                                "value": "application/json"
+                            },
+                            {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                            }
+                        ]
+                    }
+                }
+            ]
+        },
+        {
+            "name": "EventParticipants",
+            "item": [
+                {
+                    "name": "EventParticipantUpdate",
+                    "request": {
+                        "method": "PUT",
+                        "url": {
+                            "raw": "http://localhost:8989/api/event-participants/1",
+                            "path": [
+                                "api",
+                                "event-participants",
+                                "1"
+                            ],
+                            "protocol": "http",
+                            "host": [
+                                "localhost"
+                            ],
+                            "port": "8989"
+                        },
+                        "header": [
+                            {
+                                "key": "Accept",
+                                "value": "application/json"
+                            },
+                            {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "options": {
+                                "raw": {
+                                    "language": "json"
+                                }
+                            },
+                            "raw": "{\n  \"event_id\": 1,\n  \"person_id\": 2,\n  \"ticket_number\": \"EV-9754\",\n  \"status\": \"a\"\n}"
+                        }
+                    }
+                },
+                {
+                    "name": "EventParticipantDelete",
+                    "request": {
+                        "method": "DELETE",
+                        "url": {
+                            "raw": "http://localhost:8989/api/event-participants/1",
+                            "path": [
+                                "api",
+                                "event-participants",
+                                "1"
+                            ],
+                            "protocol": "http",
+                            "host": [
+                                "localhost"
+                            ],
+                            "port": "8989"
+                        },
+                        "header": [
+                            {
+                                "key": "Accept",
+                                "value": "application/json"
+                            },
+                            {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                            }
+                        ]
+                    }
+                },
+                {
+                    "name": "EventParticipantCreate",
+                    "request": {
+                        "method": "POST",
+                        "url": {
+                            "raw": "http://localhost:8989/api/event-participants",
+                            "path": [
+                                "api",
+                                "event-participants"
+                            ],
+                            "protocol": "http",
+                            "host": [
+                                "localhost"
+                            ],
+                            "port": "8989"
+                        },
+                        "header": [
+                            {
+                                "key": "Accept",
+                                "value": "application/json"
+                            },
+                            {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "options": {
+                                "raw": {
+                                    "language": "json"
+                                }
+                            },
+                            "raw": "{\n  \"event_id\": 1,\n  \"person_id\": 2,\n  \"ticket_number\": \"EV-9754\",\n  \"status\": \"a\"\n}"
+                        }
+                    }
+                },
+                {
+                    "name": "EventParticipantShow",
+                    "request": {
+                        "method": "GET",
+                        "url": {
+                            "raw": "http://localhost:8989/api/event-participants/1",
+                            "path": [
+                                "api",
+                                "event-participants",
+                                "1"
+                            ],
+                            "protocol": "http",
+                            "host": [
+                                "localhost"
+                            ],
+                            "port": "8989"
+                        },
+                        "header": [
+                            {
+                                "key": "Accept",
+                                "value": "application/json"
+                            },
+                            {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                            }
+                        ]
+                    }
+                },
+                {
+                    "name": "EventParticipantShowAll",
+                    "request": {
+                        "method": "GET",
+                        "url": {
+                            "raw": "http://localhost:8989/api/event-participants",
+                            "path": [
+                                "api",
+                                "event-participants"
+                            ],
+                            "protocol": "http",
+                            "host": [
+                                "localhost"
+                            ],
+                            "port": "8989"
+                        },
+                        "header": [
+                            {
+                                "key": "Accept",
+                                "value": "application/json"
+                            },
+                            {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                            }
+                        ]
+                    }
+                }
+            ]
+        },
+        {
+            "name": "EventStageParticipant",
+            "item": [
+                {
+                    "name": "EventStageParticipantUpdate",
+                    "request": {
+                        "method": "PUT",
+                        "url": {
+                            "raw": "http://localhost:8989/api/event-stage-participants/1",
+                            "path": [
+                                "api",
+                                "event-stage-participants",
+                                "1"
+                            ],
+                            "protocol": "http",
+                            "host": [
+                                "localhost"
+                            ],
+                            "port": "8989"
+                        },
+                        "header": [
+                            {
+                                "key": "Accept",
+                                "value": "application/json"
+                            },
+                            {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "options": {
+                                "raw": {
+                                    "language": "json"
+                                }
+                            },
+                            "raw": "{\n  \"event_participant_id\": 1,\n  \"event_room_id\": 2,\n  \"coffee_space_id\": 1,\n  \"status\": \"a\"\n}"
+                        }
+                    }
+                },
+                {
+                    "name": "EventStageParticipantDelete",
+                    "request": {
+                        "method": "DELETE",
+                        "url": {
+                            "raw": "http://localhost:8989/api/event-stage-participants/1",
+                            "path": [
+                                "api",
+                                "event-stage-participants",
+                                "1"
+                            ],
+                            "protocol": "http",
+                            "host": [
+                                "localhost"
+                            ],
+                            "port": "8989"
+                        },
+                        "header": [
+                            {
+                                "key": "Accept",
+                                "value": "application/json"
+                            },
+                            {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                            }
+                        ]
+                    }
+                },
+                {
+                    "name": "EventStageParticipantCreate",
+                    "request": {
+                        "method": "POST",
+                        "url": {
+                            "raw": "http://localhost:8989/api/event-stage-participants",
+                            "path": [
+                                "api",
+                                "event-stage-participants"
+                            ],
+                            "protocol": "http",
+                            "host": [
+                                "localhost"
+                            ],
+                            "port": "8989"
+                        },
+                        "header": [
+                            {
+                                "key": "Accept",
+                                "value": "application/json"
+                            },
+                            {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "options": {
+                                "raw": {
+                                    "language": "json"
+                                }
+                            },
+                            "raw": "{\n  \"event_participant_id\": 1,\n  \"event_room_id\": 2,\n  \"coffee_space_id\": 1,\n  \"status\": \"a\"\n}"
+                        }
+                    }
+                },
+                {
+                    "name": "EventStageParticipantShow",
+                    "request": {
+                        "method": "GET",
+                        "url": {
+                            "raw": "http://localhost:8989/api/event-stage-participants/1",
+                            "path": [
+                                "api",
+                                "event-stage-participants",
+                                "1"
+                            ],
+                            "protocol": "http",
+                            "host": [
+                                "localhost"
+                            ],
+                            "port": "8989"
+                        },
+                        "header": [
+                            {
+                                "key": "Accept",
+                                "value": "application/json"
+                            },
+                            {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                            }
+                        ]
+                    }
+                },
+                {
+                    "name": "EventStageParticipantShowAll",
+                    "request": {
+                        "method": "GET",
+                        "url": {
+                            "raw": "http://localhost:8989/api/event-stage-participants",
+                            "path": [
+                                "api",
+                                "event-stage-participants"
+                            ],
+                            "protocol": "http",
+                            "host": [
+                                "localhost"
+                            ],
+                            "port": "8989"
+                        },
+                        "header": [
+                            {
+                                "key": "Accept",
+                                "value": "application/json"
+                            },
+                            {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                            }
+                        ]
+                    }
+                }
+            ]
+        },
+        {
+            "name": "CoffeeSpaces",
+            "item": [
+                {
+                    "name": "CoffeeSpaceUpdate",
+                    "request": {
+                        "method": "PUT",
+                        "url": {
+                            "raw": "http://localhost:8989/api/coffee-spaces/1",
+                            "path": [
+                                "api",
+                                "coffee-spaces",
+                                "1"
+                            ],
+                            "protocol": "http",
+                            "host": [
+                                "localhost"
+                            ],
+                            "port": "8989"
+                        },
+                        "header": [
+                            {
+                                "key": "Accept",
+                                "value": "application/json"
+                            },
+                            {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "options": {
+                                "raw": {
+                                    "language": "json"
+                                }
+                            },
+                            "raw": "{\n  \"name\": \"Coffee Space 1\",\n  \"capacity\": 10,\n  \"location\": \"3ra andar\",\n  \"status\": \"r\"\n}"
+                        }
+                    }
+                },
+                {
+                    "name": "CoffeeSpaceDelete",
+                    "request": {
+                        "method": "DELETE",
+                        "url": {
+                            "raw": "http://localhost:8989/api/event-rooms/3",
+                            "path": [
+                                "api",
+                                "event-rooms",
+                                "3"
+                            ],
+                            "protocol": "http",
+                            "host": [
+                                "localhost"
+                            ],
+                            "port": "8989"
+                        },
+                        "header": [
+                            {
+                                "key": "Accept",
+                                "value": "application/json"
+                            },
+                            {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                            }
+                        ]
+                    }
+                },
+                {
+                    "name": "CoffeeSpaceCreate",
+                    "request": {
+                        "method": "POST",
+                        "url": {
+                            "raw": "http://localhost:8989/api/coffee-spaces",
+                            "path": [
+                                "api",
+                                "coffee-spaces"
+                            ],
+                            "protocol": "http",
+                            "host": [
+                                "localhost"
+                            ],
+                            "port": "8989"
+                        },
+                        "header": [
+                            {
+                                "key": "Accept",
+                                "value": "application/json"
+                            },
+                            {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "options": {
+                                "raw": {
+                                    "language": "json"
+                                }
+                            },
+                            "raw": "{\n  \"name\": \"Coffee Space 1\",\n  \"capacity\": 30,\n  \"location\": \"1ra andar\",\n  \"status\": \"d\"\n}"
+                        }
+                    }
+                },
+                {
+                    "name": "CoffeeSpaceShow",
+                    "request": {
+                        "method": "GET",
+                        "url": {
+                            "raw": "http://localhost:8989/api/coffee-spaces/4",
+                            "path": [
+                                "api",
+                                "coffee-spaces",
+                                "4"
+                            ],
+                            "protocol": "http",
+                            "host": [
+                                "localhost"
+                            ],
+                            "port": "8989"
+                        },
+                        "header": [
+                            {
+                                "key": "Accept",
+                                "value": "application/json"
+                            },
+                            {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                            }
+                        ]
+                    }
+                },
+                {
+                    "name": "CoffeeSpaceShowAll",
+                    "request": {
+                        "method": "GET",
+                        "url": {
+                            "raw": "http://localhost:8989/api/coffee-spaces",
+                            "path": [
+                                "api",
+                                "coffee-spaces"
+                            ],
+                            "protocol": "http",
+                            "host": [
+                                "localhost"
+                            ],
+                            "port": "8989"
+                        },
+                        "header": [
+                            {
+                                "key": "Accept",
+                                "value": "application/json"
+                            },
+                            {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                            }
+                        ]
+                    }
+                }
+            ]
+        }
+    ]
+}
