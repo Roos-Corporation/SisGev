@@ -18,7 +18,7 @@ return new class extends Migration
             $table->integer('stages');
             $table->integer('capacity');
             $table->string('location');
-            $table->enum('status', ['a', 'c', 'r']);
+            $table->enum('status', ['a', 'c', 'r', 'f']);
             $table->timestamps();
         });
     }
