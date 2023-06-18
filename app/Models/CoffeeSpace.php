@@ -8,4 +8,11 @@ use Illuminate\Database\Eloquent\Model;
 class CoffeeSpace extends Model
 {
     use HasFactory;
+
+    protected $fillable = [
+        'name',
+        'capacity',
+        'location',
+        'status'
+    ];
 }
