@@ -7,6 +7,7 @@ use App\DTO\UpdateEventRoomDTO;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreUpdateEventRoom;
 use App\Http\Resources\EventRoomResource;
+use App\Models\EventRoom;
 use App\Services\EventRoomService;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
@@ -23,9 +24,13 @@ class EventRoomController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
-        //
+        //Let's get all eventRooms
+        $eventRooms = $this->service->getAll($request->filter);
+
+        //Return the object
+        return EventRoomResource::collection($eventRooms);
     }
 
     /**
