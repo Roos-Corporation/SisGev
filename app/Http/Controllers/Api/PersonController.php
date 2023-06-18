@@ -69,8 +69,6 @@ class PersonController extends Controller
      */
     public function update(StoreUpdatePerson $request, string $id)
     {
-
-
         //Let's using the service to update the person from the request validating first by the StoreUpdatePerson
         $request['id']= $id;
         $person = $this->service->update(

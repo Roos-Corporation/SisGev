@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Api;
 
 use App\DTO\CreateEventRoomDTO;
+use App\DTO\UpdateEventRoomDTO;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreUpdateEventRoom;
 use App\Http\Resources\EventRoomResource;
@@ -60,9 +61,23 @@ class EventRoomController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(StoreUpdateEventRoom $request, string $id)
     {
-        //
+        //Let's using the service to update the eventRoom from the request validating first by the StoreUpdateEventRoom
+        $request['id']= $id;
+        $eventRoom = $this->service->update(
+            UpdateEventRoomDTO::makeFromRequest($request,$id)
+        );
+
+        //Let's check if exist the eventRoom
+        if ( !$eventRoom ){
+            return response()->json([
+                'Not Found'
+            ], Response::HTTP_NOT_FOUND);
+        }
+
+        //Return the object
+        return new EventRoomResource($eventRoom);
     }
 
     /**
