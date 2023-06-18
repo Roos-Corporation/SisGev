@@ -14,7 +14,7 @@ use Illuminate\Http\Response;
 class EventController extends Controller
 {
      /**
-     * Create a new __construct to import the eventervice
+     * Create a new __construct to import the eventservice
      */
     public function __construct(
         protected EventService $service
