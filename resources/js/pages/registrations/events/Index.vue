@@ -6,12 +6,12 @@
                 <div class="card">
                     <div class="card-body">
                         <h6 class="card-title">
-                            <i class="link-icon" data-feather="users"></i> Listagem de pessoas
+                            <i class="link-icon" data-feather="users"></i> Listagem de eventos
 
                         </h6>
 
-                        <button type="button" class="btn btn-primary" @click="$router.push('/people/form')">
-                            ➕ Cadastrar pessoa
+                        <button type="button" class="btn btn-primary" @click="$router.push('/events/form')">
+                            ➕ Cadastrar evento
                         </button>
 
                     </div>
@@ -27,37 +27,40 @@
                                     <tr>
                                         <th>Código</th>
                                         <th>Nome</th>
-                                        <th>Sobrenome</th>
-                                        <th>Contabilidade</th>
-                                        <th>Gênero</th>
+                                        <th>Responsável</th>
+                                        <th>Etapas</th>
+                                        <th>Capacidade</th>
+                                        <th>Localização</th>
                                         <th>Status</th>
                                         <th>Ação</th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <tr v-for="(person,i) in people" :key="i">
+                                    <tr v-for="(event,i) in events" :key="i">
 
-                                        <td>{{ person.id }}</td>
-                                        <td>{{ person.firstName }}</td>
-                                        <td>{{ person.lastName }}</td>
-                                        <td>{{ person.accounting }}</td>
-                                        <td >
-                                            {{ person.gender == 'f' ? 'Femenino' : 'Masculino' }}
-                                        </td>
-                                        <td>
-                                            <div class="form-check form-switch mb-2">
-                                                <input
-                                                :checked="person.status == 'a' ? true : false" type="checkbox" class="form-check-input" id="formSwitch1">
-                                            </div>
-                                        </td>
-
+                                        <td>{{ event.id }}</td>
+                                        <td>{{ event.name }}</td>
+                                        <td>{{ event.responsible }}</td>
+                                        <td>{{ event.stages }}</td>
+                                        <td>{{ event.capacity }}</td>
+                                        <td>{{ event.location }}</td>
                                         <td>
 
-                                            <button type="button" class="btn btn-primary btn-xs ml-4" data-bs-toggle="tooltip" data-bs-placement="top" title="Editar" @click="handleEditPeople(person)">
+                                            {{
+                                                event.status == 'a' ? 'Ativo' :
+                                                event.status == 'c' ? 'Cancelado' :
+                                                event.status == 'r' ? 'Reportado' :
+                                                event.status == 'f' ? 'Finalizado' : ''
+
+                                            }}
+                                        </td>
+                                        <td>
+
+                                            <button type="button" class="btn btn-primary btn-xs ml-4" data-bs-toggle="tooltip" data-bs-placement="top" title="Editar" @click="handleEditEvents(event)">
                                                 ✏️
                                             </button>
                                             ᠎
-                                            <button type="button" class="btn btn-danger btn-xs  mx-auto" data-bs-toggle="tooltip" data-bs-placement="top" title="Excluir" @click="handleDeletePeople(person)">
+                                            <button type="button" class="btn btn-danger btn-xs  mx-auto" data-bs-toggle="tooltip" data-bs-placement="top" title="Excluir" @click="handleDeleteEvents(event)">
                                                 🗑️
                                             </button>
                                         </td>
@@ -77,25 +80,24 @@
   import { onMounted, ref } from 'vue'
   import { useRouter } from 'vue-router'
   export default {
-    name: 'IndexPeople',
+    name: 'IndexEvents',
     data() {
         const router = useRouter();
 
-        let people = ref([]);
+        let events = ref([]);
 
-        const getPeople = async () => {
-            let response = await axios.get("api/people");
+        const getEvents = async () => {
+            let response = await axios.get("api/events");
 
-            people.value = response.data.data
-
+            events.value = response.data.data
         }
 
-        const handleEditPeople = async (person) => {
+        const handleEditEvents = async (event) => {
 
-            router.push({ path: '/people/form', query: { id: person.id } })
+            router.push({ path: '/events/form', query: { id: event.id } })
         }
 
-        const handleDeletePeople = async (person) => {
+        const handleDeleteEvents = async (event) => {
             Swal.fire({
                 title: 'Tem certeza ?',
                 text: "Você não pode voltar atrás.",
@@ -105,17 +107,17 @@
 
             }).then((result)=>{
                 if(result.value){
-                    axios.delete(`/api/people/${person.id}`, {
+                    axios.delete(`/api/events/${event.id}`, {
                         headers: {
                             'Accept': 'application/json',
                             'Content-Type': 'application/json'
                         }
                     })
                     .then((response)=>{
-                        getPeople();
+                        getEvents();
                         Swal.fire(
                             'Excluído',
-                            'Pessoa excluída com sucesso',
+                            'Evento excluído com sucesso',
                             'success'
                         );
                     }).catch((error)=>{
@@ -132,13 +134,13 @@
 
 
         onMounted(async () => {
-            getPeople();
+            getEvents();
         })
 
       return {
-        people,
-        handleEditPeople,
-        handleDeletePeople,
+        events,
+        handleEditEvents,
+        handleDeleteEvents,
       }
     },
 

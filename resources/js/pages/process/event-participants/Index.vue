@@ -6,12 +6,12 @@
                 <div class="card">
                     <div class="card-body">
                         <h6 class="card-title">
-                            <i class="link-icon" data-feather="users"></i> Listagem de pessoas
+                            <i class="link-icon" data-feather="users"></i> Listagem de participantes
 
                         </h6>
 
                         <button type="button" class="btn btn-primary" @click="$router.push('/people/form')">
-                            ➕ Cadastrar pessoa
+                            ➕ Cadastrar participante
                         </button>
 
                     </div>
@@ -25,11 +25,10 @@
                             <table id="dataTableExample" class="table">
                                 <thead>
                                     <tr>
-                                        <th>Código</th>
+                                        <th>Evento</th>
                                         <th>Nome</th>
                                         <th>Sobrenome</th>
                                         <th>Contabilidade</th>
-                                        <th>Gênero</th>
                                         <th>Status</th>
                                         <th>Ação</th>
                                     </tr>

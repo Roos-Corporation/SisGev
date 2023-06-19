@@ -53,7 +53,7 @@ class StoreUpdateEvent extends FormRequest
                 'required',
                 'min:3',
                 'max:255',
-                Rule::unique('events')->ignore($this->coffee_space)
+                Rule::unique('events')->ignore($this->event)
             ];
         }
 

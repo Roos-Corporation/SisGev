@@ -26,7 +26,7 @@ class CreatePersonDTO
             $request->accounting,
             $request->date_of_birth,
             $request->gender,
-            $request->status == 'on'? 'a' : 'i'
+            $request->status
         );
     }
 

@@ -6,12 +6,12 @@
                 <div class="card">
                     <div class="card-body">
                         <h6 class="card-title">
-                            <i class="link-icon" data-feather="users"></i> Listagem de pessoas
+                            <i class="link-icon" data-feather="users"></i> Listagem de salas de eventos
 
                         </h6>
 
-                        <button type="button" class="btn btn-primary" @click="$router.push('/people/form')">
-                            ➕ Cadastrar pessoa
+                        <button type="button" class="btn btn-primary" @click="$router.push('/event-rooms/form')">
+                            ➕ Cadastrar sala
                         </button>
 
                     </div>
@@ -27,37 +27,35 @@
                                     <tr>
                                         <th>Código</th>
                                         <th>Nome</th>
-                                        <th>Sobrenome</th>
-                                        <th>Contabilidade</th>
-                                        <th>Gênero</th>
+                                        <th>Capacidade</th>
+                                        <th>Localização</th>
                                         <th>Status</th>
                                         <th>Ação</th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <tr v-for="(person,i) in people" :key="i">
+                                    <tr v-for="(eventRoom,i) in eventRooms" :key="i">
 
-                                        <td>{{ person.id }}</td>
-                                        <td>{{ person.firstName }}</td>
-                                        <td>{{ person.lastName }}</td>
-                                        <td>{{ person.accounting }}</td>
-                                        <td >
-                                            {{ person.gender == 'f' ? 'Femenino' : 'Masculino' }}
-                                        </td>
-                                        <td>
-                                            <div class="form-check form-switch mb-2">
-                                                <input
-                                                :checked="person.status == 'a' ? true : false" type="checkbox" class="form-check-input" id="formSwitch1">
-                                            </div>
-                                        </td>
-
+                                        <td>{{ eventRoom.id }}</td>
+                                        <td>{{ eventRoom.name }}</td>
+                                        <td>{{ eventRoom.capacity }}</td>
+                                        <td>{{ eventRoom.location }}</td>
                                         <td>
 
-                                            <button type="button" class="btn btn-primary btn-xs ml-4" data-bs-toggle="tooltip" data-bs-placement="top" title="Editar" @click="handleEditPeople(person)">
+                                            {{
+                                                eventRoom.status == 'd' ? 'Disponível' :
+                                                eventRoom.status == 'm' ? 'Em manutenção' :
+                                                eventRoom.status == 'r' ? 'Reservada' : ''
+
+                                            }}
+                                        </td>
+                                        <td>
+
+                                            <button type="button" class="btn btn-primary btn-xs ml-4" data-bs-toggle="tooltip" data-bs-placement="top" title="Editar" @click="handleEditEventRooms(eventRoom)">
                                                 ✏️
                                             </button>
                                             ᠎
-                                            <button type="button" class="btn btn-danger btn-xs  mx-auto" data-bs-toggle="tooltip" data-bs-placement="top" title="Excluir" @click="handleDeletePeople(person)">
+                                            <button type="button" class="btn btn-danger btn-xs  mx-auto" data-bs-toggle="tooltip" data-bs-placement="top" title="Excluir" @click="handleDeleteEventRooms(eventRoom)">
                                                 🗑️
                                             </button>
                                         </td>
@@ -77,25 +75,24 @@
   import { onMounted, ref } from 'vue'
   import { useRouter } from 'vue-router'
   export default {
-    name: 'IndexPeople',
+    name: 'IndexEventRooms',
     data() {
         const router = useRouter();
 
-        let people = ref([]);
+        let eventRooms = ref([]);
 
-        const getPeople = async () => {
-            let response = await axios.get("api/people");
+        const getEventRooms = async () => {
+            let response = await axios.get("api/event-rooms");
 
-            people.value = response.data.data
-
+            eventRooms.value = response.data.data
         }
 
-        const handleEditPeople = async (person) => {
+        const handleEditEventRooms = async (event) => {
 
-            router.push({ path: '/people/form', query: { id: person.id } })
+            router.push({ path: '/event-rooms/form', query: { id: event.id } })
         }
 
-        const handleDeletePeople = async (person) => {
+        const handleDeleteEventRooms = async (event) => {
             Swal.fire({
                 title: 'Tem certeza ?',
                 text: "Você não pode voltar atrás.",
@@ -105,17 +102,17 @@
 
             }).then((result)=>{
                 if(result.value){
-                    axios.delete(`/api/people/${person.id}`, {
+                    axios.delete(`/api/event-rooms/${event.id}`, {
                         headers: {
                             'Accept': 'application/json',
                             'Content-Type': 'application/json'
                         }
                     })
                     .then((response)=>{
-                        getPeople();
+                        getEventRooms();
                         Swal.fire(
                             'Excluído',
-                            'Pessoa excluída com sucesso',
+                            'Sala de envento excluída com sucesso',
                             'success'
                         );
                     }).catch((error)=>{
@@ -132,13 +129,13 @@
 
 
         onMounted(async () => {
-            getPeople();
+            getEventRooms();
         })
 
       return {
-        people,
-        handleEditPeople,
-        handleDeletePeople,
+        eventRooms,
+        handleEditEventRooms,
+        handleDeleteEventRooms,
       }
     },
 

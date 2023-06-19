@@ -78,6 +78,7 @@ npm install vue-loader@next vue@next vue-router@next --force
 npm install @vitejs/plugin-vue --force
 npm install --save-dev sass
 npm install @vue/compiler-sfc babel-loader @babel/core @babel/preset-env
+npm install sweetalert2
 
 npm run dev
 ```
