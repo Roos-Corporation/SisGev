@@ -13,10 +13,17 @@ return new class extends Migration
     {
         Schema::create('event_participants', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('event_id')->constrained('events');
-            $table->foreignId('person_id')->constrained('people');
+
+            $table->unsignedBigInteger('event_id')->nullable();
+            $table->foreign('event_id')->references('id')->on('events')->nullable()->constrained()->cascadeOnDelete();
+
+            $table->unsignedBigInteger('person_id')->nullable();
+            $table->foreign('person_id')->references('id')->on('people')->nullable()->constrained()->cascadeOnDelete();
+
             $table->string('ticket_number');
-            $table->enum('status', ['a', 'c', 'r']);
+
+
+            $table->enum('status', ['a', 'c', 'r']); //a=confirmado
             $table->timestamps();
         });
     }

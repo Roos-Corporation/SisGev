@@ -19,7 +19,7 @@ class EventStageParticipantEloquentORM implements EventStageParticipantRepositor
         return $this->model
                     ->where(function ($query) use ($filter) {
                         if ($filter) {
-                            $query->where('event_participant_id', 'like',  "%{$filter}%}");
+                            $query->where('event_participant_id', '=',  $filter);
                         }
                     })
                     ->get()
@@ -29,12 +29,13 @@ class EventStageParticipantEloquentORM implements EventStageParticipantRepositor
     public function findOne(string $id): stdClass|null
     {
 
-        $person = $this->model->find($id);
-
-        if (!$person) {
+        $eventStageParticipant = $this->model->where('event_participant_id', '=', $id)->get()
+        ->toArray();
+        // find($id)
+        if (!$eventStageParticipant) {
             return null;
         }
-       return  (object) $person->toArray();
+       return  (object) $eventStageParticipant;
     }
 
     public function create(CreateEventStageParticipantDTO $dto): stdClass
@@ -60,6 +61,8 @@ class EventStageParticipantEloquentORM implements EventStageParticipantRepositor
     }
 
     public function delete(string $id): void{
-        $this->model->findOrFail($id)->delete();
+        // dd($id);
+        $this->model->where('event_participant_id', '=', $id)->delete();
+        // findOrFail($id)->delete();
     }
 }

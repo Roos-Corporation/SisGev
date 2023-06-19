@@ -31,12 +31,12 @@ class EventEloquentORM implements EventRepositoryInterface{
     public function findOne(string $id): stdClass|null
     {
 
-        $person = $this->model->find($id);
+        $event = $this->model->find($id);
 
-        if (!$person) {
+        if (!$event) {
             return null;
         }
-       return  (object) $person->toArray();
+       return  (object) $event->toArray();
     }
 
     public function create(CreateEventDTO $dto): stdClass

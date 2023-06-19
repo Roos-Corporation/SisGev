@@ -30,12 +30,12 @@ class CoffeeSpaceEloquentORM implements CoffeeSpaceRepositoryInterface{
     public function findOne(string $id): stdClass|null
     {
 
-        $person = $this->model->find($id);
+        $coffeeSpace = $this->model->find($id);
 
-        if (!$person) {
+        if (!$coffeeSpace) {
             return null;
         }
-       return  (object) $person->toArray();
+       return  (object) $coffeeSpace->toArray();
     }
 
     public function create(CreateCoffeeSpaceDTO $dto): stdClass

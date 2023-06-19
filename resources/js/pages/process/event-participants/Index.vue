@@ -10,7 +10,7 @@
 
                         </h6>
 
-                        <button type="button" class="btn btn-primary" @click="$router.push('/people/form')">
+                        <button type="button" class="btn btn-primary" @click="$router.push('/event-participants/form')">
                             ➕ Cadastrar participante
                         </button>
 
@@ -26,37 +26,39 @@
                                 <thead>
                                     <tr>
                                         <th>Evento</th>
+                                        <th>Qtd. Etapas</th>
                                         <th>Nome</th>
                                         <th>Sobrenome</th>
                                         <th>Contabilidade</th>
+                                        <th># Ticket</th>
                                         <th>Status</th>
                                         <th>Ação</th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <tr v-for="(person,i) in people" :key="i">
+                                    <tr v-for="(eventParticipant,i) in eventParticipants" :key="i">
 
-                                        <td>{{ person.id }}</td>
-                                        <td>{{ person.firstName }}</td>
-                                        <td>{{ person.lastName }}</td>
-                                        <td>{{ person.accounting }}</td>
+                                        <td>{{ eventParticipant.event_name }}</td>
+                                        <td>{{ eventParticipant.event_stages }}</td>
+                                        <td>{{ eventParticipant.person_first_name }}</td>
+                                        <td>{{ eventParticipant.person_last_name }}</td>
+                                        <td>{{ eventParticipant.person_accounting }}</td>
+                                        <td class="text-uppercase">{{ eventParticipant.ticket_number }}</td>
+
                                         <td >
-                                            {{ person.gender == 'f' ? 'Femenino' : 'Masculino' }}
+                                            {{
+                                                eventParticipant.status == 'a' ? 'confirmado' :
+                                                eventParticipant.status == 'c' ? 'Cancelado' :
+                                                eventParticipant.status == 'r' ? 'Reservado' : ''
+                                            }}
                                         </td>
                                         <td>
-                                            <div class="form-check form-switch mb-2">
-                                                <input
-                                                :checked="person.status == 'a' ? true : false" type="checkbox" class="form-check-input" id="formSwitch1">
-                                            </div>
-                                        </td>
 
-                                        <td>
-
-                                            <button type="button" class="btn btn-primary btn-xs ml-4" data-bs-toggle="tooltip" data-bs-placement="top" title="Editar" @click="handleEditPeople(person)">
+                                            <button type="button" class="btn btn-primary btn-xs ml-4" data-bs-toggle="tooltip" data-bs-placement="top" title="Editar" @click="handleEditEventParticipants(eventParticipant)">
                                                 ✏️
                                             </button>
                                             ᠎
-                                            <button type="button" class="btn btn-danger btn-xs  mx-auto" data-bs-toggle="tooltip" data-bs-placement="top" title="Excluir" @click="handleDeletePeople(person)">
+                                            <button type="button" class="btn btn-danger btn-xs  mx-auto" data-bs-toggle="tooltip" data-bs-placement="top" title="Excluir" @click="handleDeleteEventParticipants(eventParticipant)">
                                                 🗑️
                                             </button>
                                         </td>
@@ -76,25 +78,26 @@
   import { onMounted, ref } from 'vue'
   import { useRouter } from 'vue-router'
   export default {
-    name: 'IndexPeople',
+    name: 'IndexEventParticipants',
     data() {
         const router = useRouter();
 
-        let people = ref([]);
+        let eventParticipants = ref([]);
 
-        const getPeople = async () => {
-            let response = await axios.get("api/people");
+        const getEventParticipants = async () => {
+            let response = await axios.get("api/event-participants");
 
-            people.value = response.data.data
+            eventParticipants.value = response.data.data
 
         }
 
-        const handleEditPeople = async (person) => {
+        const handleEditEventParticipants = async (eventParticipant) => {
 
-            router.push({ path: '/people/form', query: { id: person.id } })
+            router.push({ path: '/event-participants/form', query: { id: eventParticipant.id } })
         }
 
-        const handleDeletePeople = async (person) => {
+        const handleDeleteEventParticipants = async (eventParticipant) => {
+
             Swal.fire({
                 title: 'Tem certeza ?',
                 text: "Você não pode voltar atrás.",
@@ -104,17 +107,27 @@
 
             }).then((result)=>{
                 if(result.value){
-                    axios.delete(`/api/people/${person.id}`, {
+                    Swal.fire({
+                        title: 'Por favor aguarde!',
+                        text: "Carregando...",
+                        icon:"warning",
+                        showCancelButton:false,
+                        showConfirmButton:false,
+                        time: 3000,
+                        timeProgressBar:true,
+
+                    })
+                    axios.delete(`/api/event-participants/${eventParticipant.id}`, {
                         headers: {
                             'Accept': 'application/json',
                             'Content-Type': 'application/json'
                         }
                     })
                     .then((response)=>{
-                        getPeople();
+                        getEventParticipants();
                         Swal.fire(
                             'Excluído',
-                            'Pessoa excluída com sucesso',
+                            'Participante excluída neste evento com sucesso',
                             'success'
                         );
                     }).catch((error)=>{
@@ -127,17 +140,29 @@
                     });
                 }
             })
+            Swal.close();
         }
 
 
         onMounted(async () => {
-            getPeople();
+            Swal.fire({
+                title: 'Por favor aguarde!',
+                text: "Carregando...",
+                icon:"warning",
+                showCancelButton:false,
+                showConfirmButton:false,
+                time: 3000,
+                timeProgressBar:true,
+
+            })
+            await getEventParticipants();
+            Swal.close();
         })
 
       return {
-        people,
-        handleEditPeople,
-        handleDeletePeople,
+        eventParticipants,
+        handleEditEventParticipants,
+        handleDeleteEventParticipants,
       }
     },
 

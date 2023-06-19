@@ -17,6 +17,9 @@ class EventParticipantEloquentORM implements EventParticipantRepositoryInterface
     public function getAll(string $filter = null ): array
     {
         return $this->model
+                    ->select('*', $this->model::raw('event_participants.id as eventParticipantId'), $this->model::raw('event_participants.status as eventParticipantStatus'))
+                    ->leftJoin('events', 'events.id', '=', 'event_participants.event_id')
+                    ->leftJoin('people', 'people.id', '=', 'event_participants.person_id')
                     ->where(function ($query) use ($filter) {
                         if ($filter) {
                             $query->where('ticket_number', 'like',  "%{$filter}%}");
@@ -29,12 +32,16 @@ class EventParticipantEloquentORM implements EventParticipantRepositoryInterface
     public function findOne(string $id): stdClass|null
     {
 
-        $person = $this->model->find($id);
+        $eventParticipant = $this->model
+        ->select('*', $this->model::raw('event_participants.id as eventParticipantId'))
+        ->leftJoin('events', 'events.id', '=', 'event_participants.event_id')
+        ->leftJoin('people', 'people.id', '=', 'event_participants.person_id')
+        ->find($id);
 
-        if (!$person) {
+        if (!$eventParticipant) {
             return null;
         }
-       return  (object) $person->toArray();
+       return  (object) $eventParticipant->toArray();
     }
 
     public function create(CreateEventParticipantDTO $dto): stdClass

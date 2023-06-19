@@ -30,12 +30,12 @@ class EventRoomEloquentORM implements EventRoomRepositoryInterface{
     public function findOne(string $id): stdClass|null
     {
 
-        $person = $this->model->find($id);
+        $eventRoom = $this->model->find($id);
 
-        if (!$person) {
+        if (!$eventRoom) {
             return null;
         }
-       return  (object) $person->toArray();
+       return  (object) $eventRoom->toArray();
     }
 
     public function create(CreateEventRoomDTO $dto): stdClass

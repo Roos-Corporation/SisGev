@@ -29,6 +29,7 @@ class EventParticipantController extends Controller
         $eventParticipants = $this->service->getAll($request->filter);
 
         //Return the object
+        // return  $eventParticipants;
         return EventParticipantResource::collection($eventParticipants);
     }
 
@@ -41,7 +42,7 @@ class EventParticipantController extends Controller
         $eventParticipant= $this->service->create(
             CreateEventParticipantDTO::makeFromRequest($request)
         );
-
+        $eventParticipant= $this->service->findOne($eventParticipant->id);
         //Return the object
         return new EventParticipantResource($eventParticipant);
     }
@@ -57,7 +58,6 @@ class EventParticipantController extends Controller
                 'Not Found'
             ], Response::HTTP_NOT_FOUND);
         }
-
         //If exist return the object found
         return new EventParticipantResource($eventParticipant);
     }
@@ -73,6 +73,7 @@ class EventParticipantController extends Controller
             UpdateEventParticipantDTO::makeFromRequest($request,$id)
         );
 
+        $eventParticipant= $this->service->findOne($id);
         //Let's check if exist the eventParticipant
         if ( !$eventParticipant){
             return response()->json([

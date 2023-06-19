@@ -13,9 +13,16 @@ return new class extends Migration
     {
         Schema::create('event_stage_participants', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('event_participant_id')->constrained('event_participants');
-            $table->foreignId('event_room_id')->constrained('event_rooms');
-            $table->foreignId('coffee_space_id')->constrained('coffee_spaces');
+
+            $table->unsignedBigInteger('event_participant_id')->nullable();
+            $table->foreign('event_participant_id')->references('id')->on('event_participants')->nullable()->constrained()->cascadeOnDelete();
+
+            $table->unsignedBigInteger('event_room_id')->nullable();
+            $table->foreign('event_room_id')->references('id')->on('event_rooms')->nullable()->constrained()->cascadeOnDelete();
+
+            $table->unsignedBigInteger('coffee_space_id')->nullable();
+            $table->foreign('coffee_space_id')->references('id')->on('coffee_spaces')->nullable()->constrained()->cascadeOnDelete();
+
             $table->enum('status', ['a', 'c']);
             $table->timestamps();
         });

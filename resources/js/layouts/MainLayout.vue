@@ -14,7 +14,8 @@
         <div class="sidebar-body">
           <ul class="nav">
             <li class="nav-item">
-              <a href="dashboard"  @click="$router.push('/dashboard')" class="nav-link">
+                <!-- @click="$router.push('/dashboard')"  -->
+              <a href="dashboard"  class="nav-link">
                 <i class="link-icon" data-feather="home"></i>
                 <span class="link-title">Painel</span>
               </a>
@@ -22,25 +23,29 @@
 
             <li class="nav-item nav-category">Cadastros</li>
             <li class="nav-item">
-              <a href="events" @click="$router.push('/events')" class="nav-link">
+                <!-- @click="$router.push('/events')" -->
+              <a href="events"  class="nav-link">
                 <i class="link-icon" data-feather="calendar"></i>
                 <span class="link-title">Eventos</span>
               </a>
             </li>
             <li class="nav-item">
-              <a href="event-rooms" @click="$router.push('/event-rooms')" class="nav-link">
+                <!-- @click="$router.push('/event-rooms')" -->
+              <a href="event-rooms"  class="nav-link">
                 <i class="link-icon" data-feather="table"></i>
                 <span class="link-title">Salas do evento</span>
               </a>
             </li>
             <li class="nav-item">
-              <a href="coffee-spaces" @click="$router.push('/coffee-spaces')" class="nav-link">
+                <!-- @click="$router.push('/coffee-spaces')"  -->
+              <a href="coffee-spaces" class="nav-link">
                 <i class="link-icon" data-feather="coffee"></i>
                 <span class="link-title">Espaços de café</span>
               </a>
             </li>
             <li class="nav-item">
-              <a href="people" @click="$router.push('/people')" class="nav-link">
+                <!-- @click="$router.push('/people')" -->
+              <a href="people"  class="nav-link">
                 <i class="link-icon" data-feather="users"></i>
                 <span class="link-title">Pessoas</span>
               </a>
@@ -48,13 +53,15 @@
 
             <li class="nav-item nav-category">Processos</li>
             <li class="nav-item">
-              <a href="event-participants" @click="$router.push('/event-participants')" class="nav-link">
+                <!-- @click="$router.push('/event-participants')" -->
+              <a href="event-participants"  class="nav-link">
                 <i class="link-icon" data-feather="list"></i>
                 <span class="link-title">Lista de participantes</span>
               </a>
             </li>
             <li class="nav-item">
-              <a href="reports" @click="$router.push('/reports')"  class="nav-link">
+                <!-- @click="$router.push('/reports')"  -->
+              <a href="reports" class="nav-link">
                 <i class="link-icon" data-feather="book-open"></i>
                 <span class="link-title">Relatórios</span>
               </a>
