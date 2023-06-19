@@ -65,5 +65,26 @@ php artisan key:generate
 ```
 
 
+Gere as migrations
+```sh
+php artisan migrate
+```
+
+
+Dependencia front-end
+```sh
+npm install
+npm install vue-loader@next vue@next vue-router@next --force
+npm install @vitejs/plugin-vue --force
+npm install --save-dev sass
+npm install @vue/compiler-sfc babel-loader @babel/core @babel/preset-env
+
+npm run dev
+```
+
+
 Acesse o projeto
 [http://localhost:8989](http://localhost:8989)
+
+
+
