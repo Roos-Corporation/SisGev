@@ -16,10 +16,17 @@ class EventStageParticipantEloquentORM implements EventStageParticipantRepositor
 
     public function getAll(string $filter = null ): array
     {
+        // dd(explode(":",$filter));
         return $this->model
+                    ->select('*', $this->model::raw('event_stage_participants.id as eventStageParticipantId'), $this->model::raw('event_stage_participants.status as eventStageParticipantStatus'), $this->model::raw('events.name as eventName'), $this->model::raw('coffee_spaces.name as coffeeSpaceName'), $this->model::raw('event_participants.status as eventParticipantStatus'))
+                    ->leftJoin('coffee_spaces', 'coffee_spaces.id', '=', 'event_stage_participants.coffee_space_id')
+                    ->leftJoin('event_participants', 'event_participants.id', '=', 'event_stage_participants.event_participant_id')
+                    ->leftJoin('events', 'events.id', '=', 'event_participants.event_id')
+                    ->leftJoin('people', 'people.id', '=', 'event_participants.person_id')
                     ->where(function ($query) use ($filter) {
                         if ($filter) {
-                            $query->where('event_participant_id', '=',  $filter);
+                            $filter = explode(":",$filter);
+                            $query->where($filter[0], '=',  $filter[1]);
                         }
                     })
                     ->get()
@@ -29,7 +36,13 @@ class EventStageParticipantEloquentORM implements EventStageParticipantRepositor
     public function findOne(string $id): stdClass|null
     {
 
-        $eventStageParticipant = $this->model->where('event_participant_id', '=', $id)->get()
+        $eventStageParticipant = $this->model
+        ->select('*', $this->model::raw('event_stage_participants.id as eventStageParticipantId'), $this->model::raw('event_stage_participants.status as eventStageParticipantStatus'), $this->model::raw('events.name as eventName'), $this->model::raw('coffee_spaces.name as coffeeSpaceName'), $this->model::raw('event_participants.status as eventParticipantStatus'))
+        ->leftJoin('coffee_spaces', 'coffee_spaces.id', '=', 'event_stage_participants.coffee_space_id')
+        ->leftJoin('event_participants', 'event_participants.id', '=', 'event_stage_participants.event_participant_id')
+        ->leftJoin('events', 'events.id', '=', 'event_participants.event_id')
+        ->leftJoin('people', 'people.id', '=', 'event_participants.person_id')
+        ->where('event_participant_id', '=', $id)->get()
         ->toArray();
         // find($id)
         if (!$eventStageParticipant) {

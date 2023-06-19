@@ -253,7 +253,7 @@
 
             //Let get all stage for this participant on this event
 
-            let responseStep = await axios.get(`/api/event-stage-participants?filter=${id}`, {
+            let responseStep = await axios.get(`/api/event-stage-participants?filter=event_participant_id:${id}`, {
                                 headers: {
                                     'Accept': 'application/json',
                                     'Content-Type': 'application/json'
@@ -329,14 +329,14 @@
                 .then(async (response)=>{
 
                        const res =  await funSaveStageEventParticipant(response.data.data.id)
-
+                       Swal.close()
                         toast.fire({
                             icon:"success",
                             title:"Participante cadastrada com successo"
                         });
                         router.push('/event-participants');
                 }).catch((error)=>{
-
+                    Swal.close()
                     Swal.fire(
                             'Falhou',
                             error.message,
@@ -355,7 +355,9 @@
                     'Accept': 'application/json',
                     'Content-Type': 'application/json'
                 }
-            })
+            }).then((response)=>{
+                }).catch((error)=>{
+                });
 
             for (let index = 0; index < eventStages.value.length; index++) {
 

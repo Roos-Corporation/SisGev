@@ -59,13 +59,12 @@
                 <span class="link-title">Lista de participantes</span>
               </a>
             </li>
-            <li class="nav-item">
-                <!-- @click="$router.push('/reports')"  -->
+            <!-- <li class="nav-item">
               <a href="reports" class="nav-link">
                 <i class="link-icon" data-feather="book-open"></i>
                 <span class="link-title">Relatórios</span>
               </a>
-            </li>
+            </li> -->
 
           </ul>
         </div>

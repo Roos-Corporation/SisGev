@@ -46,6 +46,37 @@
                                     </select>
                                 </div>
 
+                                <div class="col-md-12 grid-margin stretch-card" v-if="form.id">
+                                    <div class="card">
+                                        <div class="card-body">
+                                            <div class="table-responsive">
+                                                <table class="table">
+                                                    <thead>
+                                                        <tr>
+                                                            <th>Evento</th>
+                                                            <th>Particiante</th>
+                                                            <th>Status</th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                        <tr v-for="(eventStage,i) in eventStages" :key="i">
+                                                            <td>{{ eventStage.event_name }}</td>
+                                                            <td>{{ eventStage.person_first_name + '' + eventStage.person_last_name }}</td>
+                                                            <td>
+                                                                {{
+                                                                    eventStage.event_participant_status == 'a' ? 'confirmado' :
+                                                                    eventStage.event_participant_status == 'c' ? 'Cancelado' :
+                                                                    eventStage.event_participant_status == 'r' ? 'Reservado' : ''
+                                                                }}
+                                                            </td>
+                                                        </tr>
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
                             </div>
 
 
@@ -77,6 +108,7 @@
             location: '',
             status: '',
         });
+        let eventStages = ref([]);
 
         const router = useRouter();
         const route = useRoute()
@@ -99,6 +131,15 @@
             form.value.capacity=eventRoom.capacity;
             form.value.location=eventRoom.location;
             form.value.status = eventRoom.status;
+
+
+            let responseStep = await axios.get(`/api/event-stage-participants?filter=event_room_id:${id}`, {
+                                headers: {
+                                    'Accept': 'application/json',
+                                    'Content-Type': 'application/json'
+                                }
+                            });
+            eventStages.value =responseStep.data.data
 
         }
 
@@ -159,7 +200,8 @@
 
         return {
             form,
-            onSubmit
+            onSubmit,
+            eventStages
         }
     },
 

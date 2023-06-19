@@ -33,7 +33,7 @@ class EventParticipantEloquentORM implements EventParticipantRepositoryInterface
     {
 
         $eventParticipant = $this->model
-        ->select('*', $this->model::raw('event_participants.id as eventParticipantId'))
+        ->select('*', $this->model::raw('event_participants.id as eventParticipantId'), $this->model::raw('event_participants.status as eventParticipantStatus'))
         ->leftJoin('events', 'events.id', '=', 'event_participants.event_id')
         ->leftJoin('people', 'people.id', '=', 'event_participants.person_id')
         ->find($id);

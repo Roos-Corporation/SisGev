@@ -12,4 +12,5 @@ use stdClass;
     public function create(CreateEventStageParticipantDTO $dto): stdClass;
     public function update(UpdateEventStageParticipantDTO $dto): stdClass|null;
     public function delete(string $id): void;
+
  }

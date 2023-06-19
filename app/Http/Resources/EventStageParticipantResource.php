@@ -17,20 +17,32 @@ class EventStageParticipantResource extends JsonResource
     {
         if(!isset($this->id)){
             return [
-                'id' => $this['id'],
+                'id' => $this['eventStageParticipantId'],
                 'event_participant_id' => $this['event_participant_id'],
                 'event_room_id' => $this['event_room_id'],
+                'event_name' => $this['eventName'],
+                'person_first_name' => $this['first_name'],
+                'person_last_name' => $this['last_name'],
                 'coffee_space_id' => $this['coffee_space_id'],
-                'status' => $this['status'],
+                'coffee_space_name' => $this['coffeeSpaceName'],
+                'event_participant_status' => $this['eventStageParticipantStatus'],
+                'status' => $this['eventParticipantStatus'],
                 'date_created' => Carbon::make($this['created_at'])->format('Y-m-d H:i:s')
             ];
         }
+
+
         return [
-            'id' => $this->id,
+            'id' => $this->eventStageParticipantId,
             'event_participant_id' => $this->event_participant_id,
             'event_room_id' => $this->event_room_id,
+            'event_name' => $this->eventName,
+            'person_first_name' => $this->first_name,
+            'person_last_name' => $this->last_name,
             'coffee_space_id' => $this->coffee_space_id,
-            'status' => $this->status,
+            'coffee_space_name' => $this->coffeeSpaceName,
+            'event_participant_status' => $this->eventStageParticipantStatus,
+            'status' => $this->eventStageParticipantStatus,
             'date_created' => Carbon::make($this->created_at)->format('Y-m-d H:i:s')
         ];
     }

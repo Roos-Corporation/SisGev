@@ -107,16 +107,6 @@
 
             }).then((result)=>{
                 if(result.value){
-                    Swal.fire({
-                        title: 'Por favor aguarde!',
-                        text: "Carregando...",
-                        icon:"warning",
-                        showCancelButton:false,
-                        showConfirmButton:false,
-                        time: 3000,
-                        timeProgressBar:true,
-
-                    })
                     axios.delete(`/api/event-participants/${eventParticipant.id}`, {
                         headers: {
                             'Accept': 'application/json',
@@ -140,7 +130,6 @@
                     });
                 }
             })
-            Swal.close();
         }
 
 
