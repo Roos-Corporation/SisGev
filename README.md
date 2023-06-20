@@ -1,5 +1,5 @@
 
-# Sistema de Gestao de Evento
+# Sistema de Gestão de Evento
 Setup Docker Laravel 10 com PHP 8.1
 
 
