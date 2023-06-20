@@ -22,7 +22,7 @@
                 <div class="card">
                     <div class="card-body">
                         <div class="table-responsive">
-                            <table id="dataTableExample" class="table">
+                            <table id="dataTableList" class="table" >
                                 <thead>
                                     <tr>
                                         <th>Evento</th>
@@ -77,6 +77,8 @@
 <script>
   import { onMounted, ref } from 'vue'
   import { useRouter } from 'vue-router'
+  import { convertToDatable } from '../../../components/datable.js'
+
   export default {
     name: 'IndexEventParticipants',
     data() {
@@ -89,6 +91,8 @@
 
             eventParticipants.value = response.data.data
 
+            //Set table to an datable
+            convertToDatable('dataTableList')
         }
 
         const handleEditEventParticipants = async (eventParticipant) => {

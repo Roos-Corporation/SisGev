@@ -19,6 +19,13 @@
         <link rel="stylesheet" href="{{ asset('../assets/fonts/feather-font/css/iconfont.css') }}">
         <link rel="stylesheet" href="{{ asset('../assets/vendors/flag-icon-css/css/flag-icon.min.css') }}">
         <!-- endinject -->
+
+        <!-- Plugin css for this page -->
+        <link rel="stylesheet" href="{{ asset('../assets/vendors/select2/select2.min.css') }}">
+        <link rel="stylesheet" href="{{ asset('../assets/vendors/jquery-tags-input/jquery.tagsinput.min.css') }}">
+        <link rel="stylesheet" href="{{ asset('../assets/vendors/font-awesome/css/font-awesome.min.css') }}">
+        <!-- End plugin css for this page -->
+
         <!-- Layout styles -->
         <link rel="stylesheet" href="{{ asset('../assets/css/demo2/style.css') }}">
         <!-- End layout styles -->
@@ -27,6 +34,8 @@
         <!-- Plugin css for this page -->
         <link rel="stylesheet" href="{{ asset('../assets/vendors/datatables.net-bs5/dataTables.bootstrap5.css') }}">
         <!-- End plugin css for this page -->
+
+
 
         @vite('resources/css/app.css')
     </head>
@@ -38,6 +47,16 @@
     <!-- core:js -->
     <script src="{{ asset('../assets/vendors/core/core.js') }}"></script>
     <!-- endinject -->
+
+	<script src="{{ asset('../assets/vendors/jquery-validation/jquery.validate.min.js') }}"></script>
+	<script src="{{ asset('../assets/vendors/bootstrap-maxlength/bootstrap-maxlength.min.js') }}"></script>
+	<script src="{{ asset('../assets/vendors/inputmask/jquery.inputmask.min.js') }}"></script>
+	<script src="{{ asset('../assets/vendors/select2/select2.min.js') }}"></script>
+	<script src="{{ asset('../assets/vendors/typeahead.js/typeahead.bundle.min.js') }}"></script>
+	<script src="{{ asset('../assets/vendors/jquery-tags-input/jquery.tagsinput.min.js') }}"></script>
+	<script src="{{ asset('../assets/vendors/dropzone/dropzone.min.js') }}"></script>
+	<script src="{{ asset('../assets/vendors/dropify/dist/dropify.min.js') }}"></script>
+	<script src="{{ asset('../assets/vendors/moment/moment.min.js') }}"></script>
 
 	<!-- Plugin js for this page -->
     <script src="{{ asset('../assets/vendors/datatables.net/jquery.dataTables.js') }}"></script>
@@ -59,5 +78,14 @@
 	<!-- Custom js for this page -->
     <script src="{{ asset('../assets/js/data-table.js') }}"></script>
     <!-- End custom js for this page -->
+
+	<!-- Custom js for this page -->
+	<script src="{{ asset('../assets/js/form-validation.js') }}"></script>
+	<script src="{{ asset('../assets/js/bootstrap-maxlength.js') }}"></script>
+	<script src="{{ asset('../assets/js/inputmask.js') }}"></script>
+	<script src="{{ asset('../assets/js/select2.js') }}"></script>
+	<script src="{{ asset('../assets/js/typeahead.js') }}"></script>
+	<script src="{{ asset('../assets/js/tags-input.js') }}"></script>
+	<!-- End custom js for this page -->
 
 </html>

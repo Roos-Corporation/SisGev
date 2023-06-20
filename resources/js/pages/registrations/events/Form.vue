@@ -74,7 +74,8 @@
 </template>
 
 <script>
-  import { onMounted, ref } from 'vue'
+  import Swal from 'sweetalert2';
+import { onMounted, ref } from 'vue'
   import { useRouter, useRoute  } from 'vue-router'
 
   export default {
@@ -96,8 +97,19 @@
 
         onMounted(async () => {
             if(route.query.id){
+                Swal.fire({
+                    title: 'Por favor aguarde!',
+                    text: "Carregando...",
+                    icon:"warning",
+                    showCancelButton:false,
+                    showConfirmButton:false,
+                    time: 3000,
+                    timeProgressBar:true,
+
+                })
                 form.value.id = route.query.id
-                getEvent(route.query.id)
+                await getEvent(route.query.id)
+                Swal.close()
             }
         })
 

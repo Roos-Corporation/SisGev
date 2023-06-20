@@ -23,6 +23,11 @@ return new class extends Migration
             $table->unsignedBigInteger('coffee_space_id')->nullable();
             $table->foreign('coffee_space_id')->references('id')->on('coffee_spaces')->nullable()->constrained()->cascadeOnDelete();
 
+
+            $table->integer('event_id');
+            $table->integer('people_id');
+            $table->integer('step');
+
             $table->enum('status', ['a', 'c']);
             $table->timestamps();
         });

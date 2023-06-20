@@ -25,8 +25,12 @@ class EventStageParticipantResource extends JsonResource
                 'person_last_name' => $this['last_name'],
                 'coffee_space_id' => $this['coffee_space_id'],
                 'coffee_space_name' => $this['coffeeSpaceName'],
+                'event_room_name' => $this['eventRoomName'],
                 'event_participant_status' => $this['eventStageParticipantStatus'],
                 'status' => $this['eventParticipantStatus'],
+                'step' => $this['step'],
+                'event_id' => $this['event_id'],
+                'people_id' => $this['people_id'],
                 'date_created' => Carbon::make($this['created_at'])->format('Y-m-d H:i:s')
             ];
         }
@@ -41,8 +45,12 @@ class EventStageParticipantResource extends JsonResource
             'person_last_name' => $this->last_name,
             'coffee_space_id' => $this->coffee_space_id,
             'coffee_space_name' => $this->coffeeSpaceName,
+            'event_room_name' => $this->eventRoomName,
             'event_participant_status' => $this->eventStageParticipantStatus,
             'status' => $this->eventStageParticipantStatus,
+            'step' => $this->step,
+            'event_id' => $this->event_id,
+            'people_id' => $this->people_id,
             'date_created' => Carbon::make($this->created_at)->format('Y-m-d H:i:s')
         ];
     }

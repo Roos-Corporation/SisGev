@@ -18,8 +18,9 @@ class EventStageParticipantEloquentORM implements EventStageParticipantRepositor
     {
         // dd(explode(":",$filter));
         return $this->model
-                    ->select('*', $this->model::raw('event_stage_participants.id as eventStageParticipantId'), $this->model::raw('event_stage_participants.status as eventStageParticipantStatus'), $this->model::raw('events.name as eventName'), $this->model::raw('coffee_spaces.name as coffeeSpaceName'), $this->model::raw('event_participants.status as eventParticipantStatus'))
+                    ->select('*', $this->model::raw('event_stage_participants.id as eventStageParticipantId'), $this->model::raw('event_stage_participants.status as eventStageParticipantStatus'), $this->model::raw('events.name as eventName'), $this->model::raw('coffee_spaces.name as coffeeSpaceName'), $this->model::raw('event_participants.status as eventParticipantStatus'), $this->model::raw('event_rooms.name as eventRoomName'))
                     ->leftJoin('coffee_spaces', 'coffee_spaces.id', '=', 'event_stage_participants.coffee_space_id')
+                    ->leftJoin('event_rooms', 'event_rooms.id', '=', 'event_stage_participants.event_room_id')
                     ->leftJoin('event_participants', 'event_participants.id', '=', 'event_stage_participants.event_participant_id')
                     ->leftJoin('events', 'events.id', '=', 'event_participants.event_id')
                     ->leftJoin('people', 'people.id', '=', 'event_participants.person_id')
@@ -37,8 +38,9 @@ class EventStageParticipantEloquentORM implements EventStageParticipantRepositor
     {
 
         $eventStageParticipant = $this->model
-        ->select('*', $this->model::raw('event_stage_participants.id as eventStageParticipantId'), $this->model::raw('event_stage_participants.status as eventStageParticipantStatus'), $this->model::raw('events.name as eventName'), $this->model::raw('coffee_spaces.name as coffeeSpaceName'), $this->model::raw('event_participants.status as eventParticipantStatus'))
+        ->select('*', $this->model::raw('event_stage_participants.id as eventStageParticipantId'), $this->model::raw('event_stage_participants.status as eventStageParticipantStatus'), $this->model::raw('events.name as eventName'), $this->model::raw('coffee_spaces.name as coffeeSpaceName'), $this->model::raw('event_participants.status as eventParticipantStatus'), $this->model::raw('event_rooms.name as eventRoomName'))
         ->leftJoin('coffee_spaces', 'coffee_spaces.id', '=', 'event_stage_participants.coffee_space_id')
+        ->leftJoin('event_rooms', 'event_rooms.id', '=', 'event_stage_participants.event_room_id')
         ->leftJoin('event_participants', 'event_participants.id', '=', 'event_stage_participants.event_participant_id')
         ->leftJoin('events', 'events.id', '=', 'event_participants.event_id')
         ->leftJoin('people', 'people.id', '=', 'event_participants.person_id')

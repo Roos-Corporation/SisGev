@@ -50,7 +50,7 @@
                                     <div class="card">
                                         <div class="card-body">
                                             <div class="table-responsive">
-                                                <table class="table">
+                                                <table id="dataTableList" class="table">
                                                     <thead>
                                                         <tr>
                                                             <th>Evento</th>
@@ -96,6 +96,8 @@
 <script>
   import { onMounted, ref } from 'vue'
   import { useRouter, useRoute  } from 'vue-router'
+  import { convertToDatable } from '../../../components/datable.js'
+import Swal from 'sweetalert2';
 
   export default {
     name: 'FormEventRoom',
@@ -114,8 +116,20 @@
         const route = useRoute()
         onMounted(async () => {
             if(route.query.id){
+
+                Swal.fire({
+                    title: 'Por favor aguarde!',
+                    text: "Carregando...",
+                    icon:"warning",
+                    showCancelButton:false,
+                    showConfirmButton:false,
+                    time: 3000,
+                    timeProgressBar:true,
+
+                })
                 form.value.id = route.query.id
-                getEventRoom(route.query.id)
+                await getEventRoom(route.query.id)
+                Swal.close();
             }
         })
 
@@ -140,6 +154,10 @@
                                 }
                             });
             eventStages.value =responseStep.data.data
+
+
+            //Set table to an datable
+            convertToDatable('dataTableList')
 
         }
 

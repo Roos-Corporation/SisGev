@@ -5,6 +5,7 @@
             <h4 class="mb-3 mb-md-0">Painel</h4>
           </div>
         </div>
+
         <div class="row">
           <div class="col-12 col-xl-12 stretch-card">
             <div class="row flex-grow-1">
@@ -16,7 +17,7 @@
                     </div>
                     <div class="row">
                       <div class="col-6 col-md-12 col-xl-5">
-                        <h3 class="mb-2">0</h3>
+                        <h3 class="mb-2">{{  qtyPeople  }}</h3>
                       </div>
                       <div class="col-6 col-md-12 col-xl-7">
                         <div id="customersChart" class="mt-md-3 mt-xl-0"></div>
@@ -33,7 +34,7 @@
                     </div>
                     <div class="row">
                       <div class="col-6 col-md-12 col-xl-5">
-                        <h3 class="mb-2">0</h3>
+                        <h3 class="mb-2">{{  qtyEventRoom  }}</h3>
                       </div>
                       <div class="col-6 col-md-12 col-xl-7">
                         <div id="ordersChart" class="mt-md-3 mt-xl-0"></div>
@@ -50,7 +51,7 @@
                     </div>
                     <div class="row">
                       <div class="col-6 col-md-12 col-xl-5">
-                        <h3 class="mb-2">0</h3>
+                        <h3 class="mb-2">{{  qtyCoffeeSpace  }}</h3>
                       </div>
                       <div class="col-6 col-md-12 col-xl-7">
                         <div id="growthChart" class="mt-md-3 mt-xl-0"></div>
@@ -107,3 +108,50 @@
 
     </div>
 </template>
+
+<script>
+  import { onMounted, ref } from 'vue'
+  import { useRouter } from 'vue-router'
+  import Swal from 'sweetalert2';
+
+  export default {
+    name: 'IndexPeople',
+    data() {
+        const router = useRouter();
+
+        let qtyPeople = ref(0);
+        let qtyEventRoom = ref(0);
+        let qtyCoffeeSpace = ref(0);
+
+        const getQty = async () => {
+            let people = await axios.get("api/people");
+            people = people.data.data
+
+            let eventRooms = await axios.get("api/event-rooms");
+            eventRooms = eventRooms.data.data
+
+            let coffeeSpaces = await axios.get("api/coffee-spaces");
+            coffeeSpaces = coffeeSpaces.data.data
+
+
+            qtyPeople.value= await people.length
+            qtyEventRoom.value= await eventRooms.length
+            qtyCoffeeSpace.value = await coffeeSpaces.length
+
+        }
+
+
+        onMounted(async () => {
+            await getQty();
+        })
+
+      return {
+        qtyPeople,
+        qtyEventRoom,
+        qtyCoffeeSpace
+      }
+    },
+
+
+  }
+</script>

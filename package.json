@@ -14,9 +14,12 @@
     "dependencies": {
         "@babel/core": "^7.22.5",
         "@babel/preset-env": "^7.22.5",
+        "@jobinsjp/vue3-datatable": "^1.0.15",
         "@vitejs/plugin-vue": "^4.2.3",
         "@vue/compiler-sfc": "^3.3.4",
         "babel-loader": "^9.1.2",
+        "datatables.net-select": "^1.6.2",
+        "datatables.net-vue3": "^2.1.1",
         "sweetalert2": "^11.7.12",
         "vue": "^3.2.36",
         "vue-loader": "^17.0.1",

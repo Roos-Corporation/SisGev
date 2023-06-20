@@ -18,6 +18,8 @@ import CoffeeSpacesForm from '../pages/registrations/coffee-spaces/Form.vue'
 import EventParticipantsIndex from '../pages/process/event-participants/Index.vue'
 import EventParticipantsForm from '../pages/process/event-participants/Form.vue'
 
+import ReportsIndex from '../pages/reports/Index.vue'
+
 const routes = [
     {
       path: '/',
@@ -67,8 +69,13 @@ const routes = [
           path: '/event-participants/form',
           component: EventParticipantsForm
         },
+        {
+          path: '/reports',
+          component: ReportsIndex
+        },
       ]
     }
+
     // {
     //   path: '/:pathMach(.*)*',
     //   component: NotFound

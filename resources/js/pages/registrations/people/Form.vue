@@ -24,7 +24,7 @@
 
                                 <div class="col-sm-6 mb-3">
                                     <label for="cpf" class="form-label">CPF</label>
-                                    <input type="text" class="form-control" name="cpf" autocomplete="off" placeholder="Digite aqui.." v-model="form.cpf" required min="11" max="13" >
+                                    <input type="text" class="form-control" name="cpf" autocomplete="off" placeholder="Digite aqui.." v-model="form.cpf" required min="11" max="13" data-inputmask-alias="999.9999.999-99">
                                 </div>
 
                                 <div class="col-sm-6 mb-3">
@@ -79,7 +79,8 @@
 </template>
 
 <script>
-  import { onMounted, ref } from 'vue'
+  import Swal from 'sweetalert2';
+import { onMounted, ref } from 'vue'
   import { useRouter, useRoute  } from 'vue-router'
 
   export default {
@@ -102,8 +103,19 @@
 
         onMounted(async () => {
             if(route.query.id){
+                Swal.fire({
+                    title: 'Por favor aguarde!',
+                    text: "Carregando...",
+                    icon:"warning",
+                    showCancelButton:false,
+                    showConfirmButton:false,
+                    time: 3000,
+                    timeProgressBar:true,
+
+                })
                 form.value.id = route.query.id
-                getPerson(route.query.id)
+                await getPerson(route.query.id)
+                Swal.close();
             }
         })
 

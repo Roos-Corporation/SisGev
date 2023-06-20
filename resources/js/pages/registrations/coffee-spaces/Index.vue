@@ -22,7 +22,7 @@
                 <div class="card">
                     <div class="card-body">
                         <div class="table-responsive">
-                            <table id="dataTableExample" class="table">
+                            <table id="dataTableList" class="table">
                                 <thead>
                                     <tr>
                                         <th>Código</th>
@@ -74,6 +74,7 @@
 <script>
   import { onMounted, ref } from 'vue'
   import { useRouter } from 'vue-router'
+  import { convertToDatable } from '../../../components/datable.js'
   export default {
     name: 'IndexCoffeeSpaces',
     data() {
@@ -85,6 +86,8 @@
             let response = await axios.get("api/coffee-spaces");
 
             coffeeSpaces.value = response.data.data
+            //Set table to an datable
+            convertToDatable('dataTableList')
         }
 
         const handleEditCoffeeSpaces = async (event) => {

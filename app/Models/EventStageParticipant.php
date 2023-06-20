@@ -12,6 +12,9 @@ class EventStageParticipant extends Model
         'event_participant_id',
         'event_room_id',
         'coffee_space_id',
+        'event_id',
+        'people_id',
+        'step',
         'status'
     ];
 }

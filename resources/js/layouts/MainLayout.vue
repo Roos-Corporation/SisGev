@@ -14,8 +14,8 @@
         <div class="sidebar-body">
           <ul class="nav">
             <li class="nav-item">
-                <!-- @click="$router.push('/dashboard')"  -->
-              <a href="dashboard"  class="nav-link">
+                <!-- href="dashboard"   -->
+              <a href="#" @click="$router.push('/dashboard')" class="nav-link">
                 <i class="link-icon" data-feather="home"></i>
                 <span class="link-title">Painel</span>
               </a>
@@ -23,29 +23,29 @@
 
             <li class="nav-item nav-category">Cadastros</li>
             <li class="nav-item">
-                <!-- @click="$router.push('/events')" -->
-              <a href="events"  class="nav-link">
+                <!--href="events"  -->
+              <a  href="#" @click="$router.push('/events')"  class="nav-link">
                 <i class="link-icon" data-feather="calendar"></i>
                 <span class="link-title">Eventos</span>
               </a>
             </li>
             <li class="nav-item">
-                <!-- @click="$router.push('/event-rooms')" -->
-              <a href="event-rooms"  class="nav-link">
+                <!-- href="event-rooms"  -->
+              <a  href="#" @click="$router.push('/event-rooms')" class="nav-link">
                 <i class="link-icon" data-feather="table"></i>
                 <span class="link-title">Salas do evento</span>
               </a>
             </li>
             <li class="nav-item">
-                <!-- @click="$router.push('/coffee-spaces')"  -->
-              <a href="coffee-spaces" class="nav-link">
+                <!--  href="coffee-spaces" -->
+              <a  href="#" @click="$router.push('/coffee-spaces')" class="nav-link">
                 <i class="link-icon" data-feather="coffee"></i>
                 <span class="link-title">Espaços de café</span>
               </a>
             </li>
             <li class="nav-item">
-                <!-- @click="$router.push('/people')" -->
-              <a href="people"  class="nav-link">
+                <!-- href="people" -->
+              <a  href="#" @click="$router.push('/people')" class="nav-link">
                 <i class="link-icon" data-feather="users"></i>
                 <span class="link-title">Pessoas</span>
               </a>
@@ -53,18 +53,19 @@
 
             <li class="nav-item nav-category">Processos</li>
             <li class="nav-item">
-                <!-- @click="$router.push('/event-participants')" -->
-              <a href="event-participants"  class="nav-link">
+                <!--href="event-participants" -->
+              <a   href="#" @click="$router.push('/event-participants')"  class="nav-link">
                 <i class="link-icon" data-feather="list"></i>
                 <span class="link-title">Lista de participantes</span>
               </a>
             </li>
-            <!-- <li class="nav-item">
-              <a href="reports" class="nav-link">
+            <li class="nav-item">
+                <!-- href="reports" -->
+              <a  href="#" @click="$router.push('/reports')" class="nav-link">
                 <i class="link-icon" data-feather="book-open"></i>
-                <span class="link-title">Relatórios</span>
+                <span class="link-title">Consultas</span>
               </a>
-            </li> -->
+            </li>
 
           </ul>
         </div>

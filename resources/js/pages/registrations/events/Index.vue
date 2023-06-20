@@ -22,7 +22,7 @@
                 <div class="card">
                     <div class="card-body">
                         <div class="table-responsive">
-                            <table id="dataTableExample" class="table">
+                            <table id="dataTableList" class="table">
                                 <thead>
                                     <tr>
                                         <th>Código</th>
@@ -79,6 +79,8 @@
 <script>
   import { onMounted, ref } from 'vue'
   import { useRouter } from 'vue-router'
+  import { convertToDatable } from '../../../components/datable.js'
+import Swal from 'sweetalert2';
   export default {
     name: 'IndexEvents',
     data() {
@@ -90,6 +92,8 @@
             let response = await axios.get("api/events");
 
             events.value = response.data.data
+            //Set table to an datable
+            convertToDatable('dataTableList')
         }
 
         const handleEditEvents = async (event) => {
@@ -134,7 +138,18 @@
 
 
         onMounted(async () => {
-            getEvents();
+            Swal.fire({
+                title: 'Por favor aguarde!',
+                text: "Carregando...",
+                icon:"warning",
+                showCancelButton:false,
+                showConfirmButton:false,
+                time: 3000,
+                timeProgressBar:true,
+
+            })
+            await getEvents();
+            Swal.close()
         })
 
       return {

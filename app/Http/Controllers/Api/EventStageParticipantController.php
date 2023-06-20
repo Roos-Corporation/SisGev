@@ -42,6 +42,8 @@ class EventStageParticipantController extends Controller
             CreateEventStageParticipantDTO::makeFromRequest($request)
         );
 
+        $eventStageParticipant= $this->service->findOne($eventStageParticipant->id);
+
         //Return the object
         return new EventStageParticipantResource($eventStageParticipant);
     }
@@ -73,6 +75,7 @@ class EventStageParticipantController extends Controller
             UpdateEventStageParticipantDTO::makeFromRequest($request,$id)
         );
 
+        $eventStageParticipant= $this->service->findOne($id);
         //Let's check if exist the eventStageParticipant
         if ( !$eventStageParticipant){
             return response()->json([

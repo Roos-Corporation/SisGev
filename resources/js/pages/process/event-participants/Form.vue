@@ -24,15 +24,17 @@
 
                                 <div class="col-sm-6 mb-3">
                                     <label for="event" class="form-label">Evento</label>
-                                    <select class="form-control" v-model="formEventParticipant.event_id" required @change="handleChangeEvent($event)">
+                                    <!-- js-example-basic-single form-select -->
+                                    <select :option="events" class=" form-control" v-model="formEventParticipant.event_id" required @change="handleChangeEvent($event)">
                                         <option> -- Escolhe uma opção -- </option>
-                                        <option v-for="event in events" :value="event.id" :attrStep="event.stages" :attrCapacity="event.capacity" >{{ event.name }}</option>
+                                        <option  v-for="event in events" :value="event.id" :attrStep="event.stages" :attrCapacity="event.capacity" >{{ event.name }}</option>
                                     </select>
                                 </div>
 
                                 <div class="col-sm-6 mb-3">
                                     <label for="person" class="form-label">Pessoa</label>
-                                    <select class="form-control" v-model="formEventParticipant.person_id"  required @change="handlePeopleEvent($event)">
+                                    <!-- js-example-basic-single  -->
+                                    <select class="form-control" v-model="formEventParticipant.person_id"  required @change="handlePeopleEvent($event)" >
                                         <option> -- Escolhe uma opção -- </option>
                                         <option v-for="person in people" :value="person.id" >{{ ' CPF : '+  person.cpf +' '+ person.firstName +' '+ person.lastName  }}</option>
                                     </select>
@@ -45,7 +47,7 @@
 
                                 <div class="col-sm-3 mb-3">
                                     <label for="status" class="form-label">Status</label>
-                                    <select class="form-select" name="status" v-model="formEventParticipant.status" required>
+                                    <select class="form-control" name="status" v-model="formEventParticipant.status" required>
                                         <option value="a">Confirmado</option>
                                         <option value="c">Cancelado</option>
                                         <option value="r">Reservado</option>
@@ -67,8 +69,10 @@
                                                         </tr>
                                                     </thead>
                                                     <tbody>
+
+
                                                         <tr v-for="(eventStage,i) in eventStages" :key="i">
-                                                            <td>{{ i+1 }}</td>
+                                                            <td>{{ eventStage.step }}</td>
                                                             <td>
                                                                 <select class="form-control" required  v-model="eventStage.event_room_id">
                                                                     <option> -- Escolhe uma opção -- </option>
@@ -114,7 +118,8 @@
 </template>
 
 <script>
-  import { onMounted, ref } from 'vue'
+  import Swal from 'sweetalert2';
+import { onMounted, ref } from 'vue'
   import { useRouter, useRoute  } from 'vue-router'
 
   export default {
@@ -140,28 +145,29 @@
 
         onMounted(async () => {
 
-            Swal.fire({
-                title: 'Por favor aguarde!',
-                text: "Carregando...",
-                icon:"warning",
-                showCancelButton:false,
-                showConfirmButton:false,
-                time: 3000,
-                timeProgressBar:true,
 
-            })
+            Swal.fire({
+                    title: 'Por favor aguarde!',
+                    text: "Carregando...",
+                    icon:"warning",
+                    showCancelButton:false,
+                    showConfirmButton:false,
+                    time: 3000,
+                    timeProgressBar:true,
+
+                })
             //let's get the list of event first
-            await getEvents();
+            getEvents();
             //let's get the list of People
-            await getPeople();
+            getPeople();
             //let's get the list of EventRooms
-            await getEventRooms()
+            getEventRooms()
             //let's get the list of CoffeeSpaces
-            await getCoffeeSpaces()
+            getCoffeeSpaces()
 
             if(route.query.id){
                 formEventParticipant.value.id = route.query.id
-                getEventParticipant(route.query.id)
+                await getEventParticipant(route.query.id)
             }
             Swal.close()
         })
@@ -227,6 +233,9 @@
                 eventStages.value = [];
                 for (let index = 0; index < formEventParticipant.event_stage; index++) {
                     eventStages.value.push({
+                        'step': (index+1),
+                        'event_id': formEventParticipant.event_id,
+                        'people_id': formEventParticipant.person_id,
                         'event_room_id': '',
                         'coffee_space_id': '',
                         'status': 'a'
@@ -294,11 +303,11 @@
                 .then(async (response)=>{
                        const res =  await funSaveStageEventParticipant(formEventParticipant.value.id)
 
+                       router.push('/event-participants');
                     toast.fire({
                         icon:"success",
                     title:"Participante atualizada com successo"
                     });
-                    router.push('/event-participants');
                 }).catch((error)=>{
 
                     Swal.fire(
@@ -329,12 +338,11 @@
                 .then(async (response)=>{
 
                        const res =  await funSaveStageEventParticipant(response.data.data.id)
-                       Swal.close()
+                        router.push('/event-participants');
                         toast.fire({
                             icon:"success",
                             title:"Participante cadastrada com successo"
                         });
-                        router.push('/event-participants');
                 }).catch((error)=>{
                     Swal.close()
                     Swal.fire(
@@ -348,43 +356,45 @@
         }
 
         const funSaveStageEventParticipant = async (idParticipant) => {
-
-            //Delete all step before save
-            await axios.delete(`/api/event-stage-participants/${idParticipant}`, {
-                headers: {
-                    'Accept': 'application/json',
-                    'Content-Type': 'application/json'
+            try {
+                 //Delete all step before save
+                const resp = await axios.delete(`/api/event-stage-participants/${idParticipant}`, {
+                        headers: {
+                            'Accept': 'application/json',
+                            'Content-Type': 'application/json'
+                        }
+                    })
+                } catch (error) {
+                    console.log(error)
                 }
-            }).then((response)=>{
-                }).catch((error)=>{
-                });
+                for (let index = 0; index < eventStages.value.length; index++) {
 
-            for (let index = 0; index < eventStages.value.length; index++) {
+                    const formData = new FormData();
+                    formData.append('event_participant_id', idParticipant);
+                    formData.append('step', eventStages.value[index].step);
+                    formData.append('event_id', eventStages.value[index].event_id);
+                    formData.append('people_id', eventStages.value[index].people_id);
+                    formData.append('event_room_id', eventStages.value[index].event_room_id);
+                    formData.append('coffee_space_id', eventStages.value[index].coffee_space_id);
+                    formData.append('status', eventStages.value[index].status);
 
-                const formData = new FormData();
-                formData.append('event_participant_id', idParticipant);
-                formData.append('event_room_id', eventStages.value[index].event_room_id);
-                formData.append('coffee_space_id', eventStages.value[index].coffee_space_id);
-                formData.append('status', eventStages.value[index].status);
-
-               await axios.post("/api/event-stage-participants", formData, {
-                    headers: {
-                        'Accept': 'application/json',
-                        'Content-Type': 'application/json'
-                    }
-                } )
-                .then((response)=>{
-                    // console.log(response)
-                }).catch((error)=>{
-                    Swal.fire(
-                            'Falhou',
-                            error.message,
-                            'error'
-                        );
-                    return false
-                });
-            }
-
+                await axios.post("/api/event-stage-participants", formData, {
+                        headers: {
+                            'Accept': 'application/json',
+                            'Content-Type': 'application/json'
+                        }
+                    } )
+                    .then((response)=>{
+                        // console.log(response)
+                    }).catch((error)=>{
+                        // Swal.fire(
+                        //         'Falhou',
+                        //         error.message,
+                        //         'error'
+                        //     );
+                        // return false
+                    });
+                }
             return true
         }
 

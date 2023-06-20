@@ -22,7 +22,7 @@
                 <div class="card">
                     <div class="card-body">
                         <div class="table-responsive">
-                            <table id="dataTableExample" class="table">
+                            <table id="dataTableList" class="table">
                                 <thead>
                                     <tr>
                                         <th>Código</th>
@@ -46,7 +46,7 @@
                                         </td>
                                         <td>
                                             <div class="form-check form-switch mb-2">
-                                                <input
+                                                <input disabled
                                                 :checked="person.status == 'a' ? true : false" type="checkbox" class="form-check-input" id="formSwitch1">
                                             </div>
                                         </td>
@@ -76,6 +76,9 @@
 <script>
   import { onMounted, ref } from 'vue'
   import { useRouter } from 'vue-router'
+  import { convertToDatable } from '../../../components/datable.js'
+  import Swal from 'sweetalert2';
+
   export default {
     name: 'IndexPeople',
     data() {
@@ -87,6 +90,9 @@
             let response = await axios.get("api/people");
 
             people.value = response.data.data
+
+            //Set table to an datable
+            convertToDatable('dataTableList')
 
         }
 
@@ -132,7 +138,18 @@
 
 
         onMounted(async () => {
-            getPeople();
+            Swal.fire({
+                title: 'Por favor aguarde!',
+                text: "Carregando...",
+                icon:"warning",
+                showCancelButton:false,
+                showConfirmButton:false,
+                time: 3000,
+                timeProgressBar:true,
+
+            })
+            await getPeople();
+            Swal.close()
         })
 
       return {

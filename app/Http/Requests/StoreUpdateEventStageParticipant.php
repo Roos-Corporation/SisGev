@@ -30,6 +30,15 @@ class StoreUpdateEventStageParticipant extends FormRequest
             'event_room_id' => [
                 'required',
             ],
+            'people_id' => [
+                'required',
+            ],
+            'event_id' => [
+                'required',
+            ],
+            'step' => [
+                'required',
+            ],
             'status' => [
                 'required'
             ],
